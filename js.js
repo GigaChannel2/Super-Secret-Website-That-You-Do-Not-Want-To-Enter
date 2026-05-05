@@ -9,6 +9,8 @@ let diawarn = document.getElementById("diawarn");
 let sfx = document.getElementById("sfx");
 let isTimer = false;
 
+let debug = false;
+
 on.play();
 setTimeout(function() {
     body.style.opacity = 1;
@@ -23,33 +25,40 @@ setTimeout(function() {
 let focus = false;
 
 document.addEventListener("keydown", (e) => {
-    if (e.keyCode === 123) {
-        e.preventDefault();
-        let wrongSfx = new Audio("wrong_password.mp3").play();
-    }
-    if (e.ctrlKey && e.key === "u") {
-        e.preventDefault();
-        let wrongSfx = new Audio("wrong_password.mp3").play();
-    }
-    if (e.ctrlKey && e.shiftKey && e.key == 'I') {
-        e.preventDefault();
-        let wrongSfx = new Audio("wrong_password.mp3").play();
-    }
-    if (e.ctrlKey && e.shiftKey && e.key == 'C') {
-        e.preventDefault();
-        let wrongSfx = new Audio("wrong_password.mp3").play();
-    }
-    if (e.ctrlKey && e.shiftKey && e.key == 'J') {
-        e.preventDefault();
-        let wrongSfx = new Audio("wrong_password.mp3").play();
-    }
-    if (e.ctrlKey && e.shiftKey && e.key === "I") {
-        e.preventDefault();
-        let wrongSfx = new Audio("wrong_password.mp3").play();
+    if (!debug) {
+        // basically prevent inspect
+        if (e.keyCode === 123) {
+            e.preventDefault();
+            let wrongSfx = new Audio("wrong_password.mp3").play();
+        }
+        if (e.ctrlKey && e.key === "u") {
+            e.preventDefault();
+            let wrongSfx = new Audio("wrong_password.mp3").play();
+        }
+        if (e.ctrlKey && e.shiftKey && e.key == 'I') {
+            e.preventDefault();
+            let wrongSfx = new Audio("wrong_password.mp3").play();
+        }
+        if (e.ctrlKey && e.shiftKey && e.key == 'C') {
+            e.preventDefault();
+            let wrongSfx = new Audio("wrong_password.mp3").play();
+        }
+        if (e.ctrlKey && e.shiftKey && e.key == 'J') {
+            e.preventDefault();
+            let wrongSfx = new Audio("wrong_password.mp3").play();
+        }
+        if (e.ctrlKey && e.shiftKey && e.key === "I") {
+            e.preventDefault();
+            let wrongSfx = new Audio("wrong_password.mp3").play();
+        }
     }
     if (e.keyCode === 191 && !focus) {
         e.preventDefault();
         password.focus();
+    }
+    if (e.keyCode == 27 && focus) {
+        e.preventDefault();
+        password.blur();
     }
 });
 
