@@ -67,7 +67,7 @@ dialog {
   /*display: none;*/
 }
 #but {
-  margin-top: 65px;
+  margin-top: 0px;
   border-radius: 8px 8px 8px 8px;
   background-color: aqua;
   width: 100px;
@@ -95,8 +95,21 @@ dialog {
   outline: none;
   width: 300px;
   height: 50px;
-  display:grid;
   gap: 10px;
+  display: block;
+  align-self: center;
+  justify-self: center;
+}
+
+#input_div {
+  position: relative;
+  top: 8px;
+  left: 5px;
+  height: 100px;
+  width: 300px;
+  max-width: 350px;
+  display: flex;
+  justify-content: center;
 }
 
 #tbox.wrong{
