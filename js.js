@@ -20,6 +20,8 @@ setTimeout(function() {
     password.value = password.value.toUpperCase();
 });*/
 
+let focus = false;
+
 document.addEventListener("keydown", (e) => {
     if (e.keyCode === 123) {
         e.preventDefault();
@@ -45,6 +47,17 @@ document.addEventListener("keydown", (e) => {
         e.preventDefault();
         let wrongSfx = new Audio("wrong_password.mp3").play();
     }
+    if (e.keyCode === 191 && !focus) {
+        e.preventDefault();
+        password.focus();
+    }
+});
+
+password.addEventListener("focus", () => {
+    focus = true;
+});
+password.addEventListener("blur", () => {
+    focus = false;
 });
 
 password.addEventListener("input", (e) => {
@@ -59,13 +72,43 @@ password.addEventListener("input", (e) => {
 
 password.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
-        submit();
+        submit_new();
     }
 });
 
 function close_d() {
     dia.close();
 }
+
+async function submit_new() {
+    try {
+        const res = await fetch("https://raw.githubusercontent.com/GigaChannel2/Definitely-Not-A-Website/main/password_code.json")
+        const data = res.json();
+
+        const result = data[pass];
+
+        switch (result.type) {
+            case "href":
+                goTo(result.value);
+                break;
+            case "txt":
+                textCh(result.value);
+                break;
+            case "sfx":
+                playSfx(result.value);
+                break;
+            default:
+                break;
+        }
+    } catch (error) {
+        try {
+            submit();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 function submit() {
     let donate = document.getElementById("donation");
     let sfx_donate = document.getElementById("sfx_donate");
@@ -81,10 +124,14 @@ function submit() {
         default:
             wrong();
             break;
-        case "hall of memories":
-            // code 130
-            goTo("memories_hall.html");
-            break;
+        // case "lullaby":
+        //     // code 131
+        //     goTo("lullaby.html");
+        //     break;
+        // case "hall of memories":
+        //     // code 130
+        //     goTo("memories_hall.html");
+        //     break;
         case "memories":
             // code 129
             goTo("memories.html");
