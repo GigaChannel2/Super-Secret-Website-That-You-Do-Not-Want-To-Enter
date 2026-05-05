@@ -101,6 +101,7 @@ async function submit_new() {
                 break;
         }
     } catch (error) {
+        console.log(error);
         try {
             submit();
         } catch (error) {
