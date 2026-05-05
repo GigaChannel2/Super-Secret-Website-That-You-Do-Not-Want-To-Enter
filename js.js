@@ -83,7 +83,7 @@ function close_d() {
 async function submit_new() {
     try {
         const res = await fetch("https://raw.githubusercontent.com/GigaChannel2/Definitely-Not-A-Website/main/password_code.json")
-        const data = res.json();
+        const data = await res.json();
 
         const result = data[pass];
 
