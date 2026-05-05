@@ -1,6 +1,6 @@
 {
     "lullaby": {
-        "value": "https://youtube.com",
-        "type": "href"
+        "type": "href",
+        "value": "https://youtube.com"
     }
 }
