@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Northernlight</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: omori;
+            src: url(OMORI_GAME2.ttf);
+        }
+        body {
+            background-color: black;
+            color: white;
+        }
+        #container {
+            display: flex;
+            /* align-items: center; */
+            justify-content: center;
+            width: 100%;
+            height: 98vh;
+        }
+        #txt {
+            display: block;
+            position: relative;
+            align-self: center;
+            justify-self: center;
+            max-width: max-content;
+        }
+        h1 {
+            font-family: "Jersey 10";
+            text-indent: 5px;
+            text-align: center;
+            align-self: center;
+            /* position: relative; */
+            letter-spacing: 1px;
+            font-weight: normal;
+            font-size: 100px;
+        }
+
+        #hid {
+            position: absolute;
+            align-self: flex-end;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <audio src="songs/northernlight.m4a" autoplay loop></audio>
+    <div id="container">
+        <h1>Northernlight</h1>
+        <h1 id="hid"> <br> </h1>
+        <div id="txt">
+        </div>
+    </div>
+    <script>
+        let hid = document.getElementById("hid");
+
+        setInterval(() => {
+            let date = new Date;
+            let day = date.getDay();
+            let month = date.getUTCMonth();
+            let year = date.getFullYear();
+            let hour = date.getHours();
+            let minute = date.getMinutes();
+            let sec = date.getSeconds();
+
+            // hid.textContent = year + "/" + month + "/" + day + "\n" + hour + ":" + minute + ":" + sec;
+            hid.textContent = hour + ":" + minute + ":" + sec;
+            // hid.textContent = new Date;
+        }, 500)
+    </script>
+</body>
+</html>
