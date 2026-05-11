@@ -63,14 +63,32 @@
             let day = date.getDay();
             let month = date.getUTCMonth();
             let year = date.getFullYear();
-            let hour = date.getHours();
-            let minute = date.getMinutes();
-            let sec = date.getSeconds();
+            let bhour = date.getHours();
+            let bminute = date.getMinutes();
+            let bsec = date.getSeconds();
+            let ahour = 0;
+            let aminute = 0;
+            let asec = 0
+            if (bhour <= 9) {
+                ahour = "0" + bhour;
+            } else {
+                ahour = bhour;
+            }
+            if (bminute <= 9) {
+                aminute = "0" + bminute;
+            } else {
+                aminute = bminute;
+            }
+            if (bsec <= 9) {
+                asec = "0" + bsec;
+            } else {
+                asec = bsec;
+            }
 
             // hid.textContent = year + "/" + month + "/" + day + "\n" + hour + ":" + minute + ":" + sec;
-            hid.textContent = hour + ":" + minute + ":" + sec;
+            hid.textContent = ahour + ":" + aminute + ":" + asec;
             // hid.textContent = new Date;
-        }, 500)
+        }, 100)
     </script>
 </body>
 </html>
