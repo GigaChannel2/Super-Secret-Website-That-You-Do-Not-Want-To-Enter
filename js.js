@@ -1,5 +1,6 @@
 let password = document.getElementById("tbox");
 let txt = document.getElementById("txt");
+let but = document.getElementById("but")
 let pass = "";
 let sound = document.getElementById("aud");
 let on = document.getElementById("on");
@@ -8,6 +9,7 @@ let dia = document.getElementById("dia");
 let diawarn = document.getElementById("diawarn");
 let sfx = document.getElementById("sfx");
 let isTimer = false;
+let nullDetected = false;
 
 let debug = false;
 
@@ -80,7 +82,12 @@ password.addEventListener("input", (e) => {
 });
 
 password.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && !nullDetected) {
+        submit_new();
+    }
+});
+but.addEventListener("click", () => {
+    if (!nullDetected) {
         submit_new();
     }
 });
@@ -105,6 +112,11 @@ async function submit_new() {
                 break;
             case "sfx":
                 playSfx(result.value);
+                break;
+            case "NULL":
+                playSfx("sfx/glitchy_thing.mp3");
+                textCh(result.value);
+                nullDetected = true;
                 break;
             default:
                 break;
@@ -134,6 +146,11 @@ function submit() {
         default:
             wrong();
             break;
+        // case "nulll": 
+        //     playSfx("sfx/glitchy_thing.mp3");
+        //     nullDetected = true;
+        //     textCh("UNEXPECTED CHARACTER: NULL <br>UNEXPECTED CHARACTER: NULL <br>UNEXPECTED CHARACTER: NULL <br>UNEXPECTED CHARACTER: NULL <br>UNEXPECTED CHARACTER: NULL <br>UNEXPECTED CHARACTER: NULL <br>UNEXPECTED CHARACTER: NULL <br>UNEXPECTED CHARACTER: NULL <br>UNEXPECTED CHARACTER: NULL <br>UNEXPECTED CHARACTER: NULL <br>UNEXPECTED CHARACTER: NULL <br>");
+        //     break;
         // case "lullaby":
         //     // code 131
         //     goTo("lullaby.html");
@@ -320,7 +337,7 @@ function submit() {
             break;
         case "starwalker":
             // code 82
-            textCh("Very                          Original");
+            textCh("Very /n /n /n Original");
             break;
         case "original":
             // code 81
@@ -653,25 +670,39 @@ function wrong() {
     }
 }
 
+sfx.addEventListener("ended", () => {
+    goTo("");
+});
+
 function textCh(value) {
     if(!isTimer) {
         isTimer = true;
         txt.style.color = "white";
         txt.style.opacity = 1;
+        // value.replaceAll("/n", "bimbim");
+        value.replace("/n/g", "bambam");
         txt.innerHTML = value;
+        // txt.innerHTML.replace("/n", "bimbum");
+        // txt.innerHTML.replaceAll("/n", "bimbim");
         txt.style.visibility = "visible";
         if (pass == "butt certificate") {
             txt.style.fontFamily = "omori";
+        } else if (nullDetected) {
+            txt.style.color = "red";
+            txt.classList.add("null");
         } else {
             txt.style.fontFamily = "Source Code Pro";
         }
-        let timer = setTimeout(function() {
-            txt.style.opacity = 0;
-            setTimeout(function() {
-                txt.style.visibility = "hidden";
-                isTimer = false;
-            }, 500);
-        }, 3000);
+
+        if (!nullDetected) {
+            let timer = setTimeout(function() {
+                txt.style.opacity = 0;
+                setTimeout(function() {
+                    txt.style.visibility = "hidden";
+                    isTimer = false;
+                }, 500);
+            }, 3000);
+        }
     }
 }
 

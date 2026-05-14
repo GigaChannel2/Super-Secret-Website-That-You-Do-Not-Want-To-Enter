@@ -213,6 +213,13 @@ dialog {
   transition: opacity 0.4s ease-in-out;
   visibility: hidden;
 }
+#txt.null {
+  opacity: 1;
+  transition: all 0s linear;
+  color: red;
+  visibility: visible;
+}
+
 #comp {
   opacity: 0.4;
 }
