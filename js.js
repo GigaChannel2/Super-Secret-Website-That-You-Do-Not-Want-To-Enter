@@ -114,9 +114,9 @@ async function submit_new() {
                 playSfx(result.value);
                 break;
             case "NULL":
+                nullDetected = true;
                 playSfx("sfx/glitchy_thing.mp3");
                 textCh(result.value);
-                nullDetected = true;
                 break;
             default:
                 break;
@@ -677,7 +677,6 @@ sfx.addEventListener("ended", () => {
 function textCh(value) {
     if(!isTimer) {
         isTimer = true;
-        txt.style.color = "white";
         txt.style.opacity = 1;
         // value.replaceAll("/n", "bimbim");
         value.replace("/n/g", "bambam");
@@ -691,6 +690,7 @@ function textCh(value) {
             txt.style.color = "red";
             txt.classList.add("null");
         } else {
+            txt.style.color = "white";
             txt.style.fontFamily = "Source Code Pro";
         }
 
