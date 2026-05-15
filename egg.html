@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NULL</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 98vh;
+        }
+        img {
+            display: block;
+            align-self: center;
+            user-select: none;
+            pointer-events: none;
+            
+        }
+    </style>
+</head>
+<body>
+    <audio src="sfx/filename2.m4a" autoplay></audio>
+    <div id="container">
+        <img src="img/null.webp" draggable="false">
+    </div>
+    <script>
+        document.querySelector("audio").addEventListener("ended", () => {
+            window.location.href = "notawebsite.html";
+        });
+    </script>
+</body>
+</html>
