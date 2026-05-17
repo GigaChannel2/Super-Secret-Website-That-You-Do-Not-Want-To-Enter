@@ -36,6 +36,7 @@ function text() {
                     changed += 1;
                     if (spedUp) {
                         speed -= 1;
+                        console.log(speed);
                     }
                     text();
                 } else {
