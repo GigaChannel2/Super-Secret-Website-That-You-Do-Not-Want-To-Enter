@@ -1,10 +1,11 @@
 let txt = document.getElementById("txt");
 let speed = 14300;
 let changed = 0;
+let startChange = false;
+let spedUp = false;
 document.getElementById("container").style.opacity = 1;
 txt.textContent = "I loved you";
 
-text()
 setInterval(() => {
     switch (changed) {
         case 1:
@@ -15,15 +16,14 @@ setInterval(() => {
             break;
         case 3:
             speed = 143;
-            break;
-        case 43:
-            speed = 43;
-            break;
-        case 70:
-            speed = 14;
+            spedUp = true;
             break;
     }
 }, 14);
+
+document.querySelector("audio").addEventListener("ended", () => {
+    text();
+});
 
 function text() {
     setTimeout(() => {
@@ -32,8 +32,11 @@ function text() {
             txt.textContent = "He loved her and you killed her";
             setTimeout(() => {
                 txt.textContent = "They loved her and you killed her";
-                if (changed < 143){                    
+                if (changed < 143 && speed > 0){                    
                     changed += 1;
+                    if (spedUp) {
+                        speed -= 1;
+                    }
                     text();
                 } else {
                     txt.textContent = "You loved her and you killed her.";
