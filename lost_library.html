@@ -17,19 +17,21 @@
         #container{
             padding-left: 45px;
             max-width: 700px;
+            display: block;
+            transition: all 0.35s ease;
         }
-        #title{
+        #container #title{
             font-size: 60px;
         }
-        #silent{
+        #container #silent{
             /* padding-top: 190px; */
         }
-        #buttons{
+        #container #buttons{
             display: block;
             max-width: 900px;
             max-height: 400px;
         }
-        .button{
+        #container .button{
             border: 2px solid white;
             padding: 10px;
             margin-right: 10px;
@@ -44,29 +46,171 @@
             color: white;
             text-decoration: none;
         }
+        #container .gap{
+            height: 1000px;
+        }
+        #content {
+            padding-left: 45px;
+            max-width: 700px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        #content #title{
+            font-size: 60px;
+            font-weight: normal;
+        }
+        #content #back{
+            margin-left: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 3;
+            border: 2px solid white;
+            max-width: 100px;
+            padding: 2px;
+            text-align: center;
+            background-color: black;
+        }
+        #content .desc{
+            padding-top: 20px;
+            max-width: 600px;
+            padding-left: 20px;
+            font-weight: normal;
+        }
+        #content #subtitle{
+            font-size: 50px;
+        }
         .gap{
             height: 1000px;
+        }
+        #back {
+            visibility: hidden;
+            margin-left: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 3;
+            border: 2px solid white;
+            max-width: 100px;
+            padding: 2px;
+            text-align: center;
+            background-color: black;
+            opacity: 0;
+            transition: opacity 0.7s ease;
         }
     </style>
 </head>
 <body>
     <audio src="lost_library.m4a" autoplay loop></audio>
+    <h1 id="back"><a href="#" class="butt"> Go Back </a></h1>
     <div id="container">
         <h1 id="title">Lost Library</h1>
         <h1 id="desc"> Unknown Knowledge, Abandoned Books, What Would You Like To Do?</h1>
         <div id="buttons">
-            <h1 id="library1" class="button"> <a class="butt" href="lost library/library_1.html">Library Section 1</a> </h1>
-            <h1 id="library2" class="button"> <a class="butt" href="lost library/library_2.html">Library Section 2</a> </h1>
-            <h1 id="library3" class="button"> <a class="butt" href="lost library/library_3.html">Library Section 3</a> </h1>
-            <h1 id="library4" class="button"> <a class="butt" href="lost library/library_4.html">Library Section 4</a> </h1>
-            <h1 id="library5" class="button"> <a class="butt" href="lost library/library_5.html">Library Section 5</a> </h1>
-            <h1 id="library6" class="button"> <a class="butt" href="lost library/library_6.html">Library Section 6</a> </h1>
-            <h1 id="library7" class="button"> <a class="butt" href="lost library/library_7.html">Library Section 7</a> </h1>
-            <h1 id="library8" class="button"> <a class="butt" href="lost library/library_8.html">Library Section 8</a> </h1>
-            <h1 id="library9" class="button"> <a class="butt" href="lost library/library_9.html">Library Section 9</a> </h1>
+            <h1 id="library1" class="button" onclick="currentSection=1"> <a class="butt" href="#content">Library Section 1</a> </h1>
+            <h1 id="library2" class="button" onclick="currentSection=2"> <a class="butt" href="#content">Library Section 2</a> </h1>
+            <h1 id="library3" class="button" onclick="currentSection=3"> <a class="butt" href="#content">Library Section 3</a> </h1>
+            <h1 id="library4" class="button" onclick="currentSection=4"> <a class="butt" href="#content">Library Section 4</a> </h1>
+            <h1 id="library5" class="button" onclick="currentSection=5"> <a class="butt" href="#content">Library Section 5</a> </h1>
+            <h1 id="library6" class="button" onclick="currentSection=6"> <a class="butt" href="#content">Library Section 6</a> </h1>
+            <h1 id="library7" class="button" onclick="currentSection=7"> <a class="butt" href="#content">Library Section 7</a> </h1>
+            <h1 id="library8" class="button" onclick="currentSection=8"> <a class="butt" href="#content">Library Section 8</a> </h1>
+            <h1 id="library9" class="button" onclick="currentSection=9"> <a class="butt" href="#content">Library Section 9</a> </h1>
         </div>
         <div class="gap"></div>
         <h1 id="silent"> Ssht, it's still a library, be quiet..</h1>
     </div>
+    <div id="content">
+        <h1 id="title">Library Section ?</h1>
+        <h1 id="subtitle">[LOST]</h1>
+        <h1 class="desc">
+            [LOST] <br>
+            [LOST] <br>
+            [LOST] <br>
+            [LOST] <br>
+        </h1>
+        <div class="gap"></div>
+    </div>
+    <script>
+        const debug = false;
+        const buttons = document.querySelectorAll('.button');
+        const backButton = document.getElementById('back');
+        const container = document.getElementById('container');
+        const content = document.getElementById('content');
+        let currentSection = null;
+        let inTimer = false;
+
+        if (debug) {
+            setInterval(() => {
+                console.log(currentSection);
+            }, 100);
+        }
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                goIn();
+            });
+        });
+
+        backButton.addEventListener('click', () => {
+            back();
+        });
+
+        async function fetcha() {
+            try {
+                const res = await fetch("https://raw.githubusercontent.com/GigaChannel2/Definitely-Not-A-Website/main/lost_library.json")
+                const data = await res.json();
+            
+                const result = data["button" + currentSection];
+                
+                content.querySelector('#title').textContent = result.title;
+                content.querySelector('#subtitle').textContent = result.subtitle;
+                content.querySelector('.desc').innerHTML = result.content;
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        function goIn() {
+            if (inTimer) return;
+            inTimer = true;
+            fetcha();
+            container.style.opacity = '0';
+            backButton.style.visibility = 'visible';
+            backButton.style.opacity = "1";
+            setTimeout(() => {
+                container.style.display = 'none';
+                content.style.display = 'block';
+
+                requestAnimationFrame(() => {
+                    content.style.opacity = "1";
+                });
+
+                setTimeout(() => {
+                    inTimer = false;
+                }, 350);
+            }, 350);
+        }
+
+        function back() {
+            if (inTimer) return;
+            inTimer = true;
+            content.style.opacity = '0';
+            backButton.style.visibility = 'hidden';
+            backButton.style.opacity = "0";
+            setTimeout(() => {
+                content.style.display = 'none';
+                container.style.display = 'block';
+
+                requestAnimationFrame(() => {
+                    container.style.opacity = "1";
+                });
+                
+                setTimeout(() => {
+                    inTimer = false;
+                }, 350);
+            }, 350);
+        }
+    </script>
 </body>
 </html>
