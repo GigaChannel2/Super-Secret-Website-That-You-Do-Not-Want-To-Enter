@@ -96,25 +96,27 @@
             background-color: black;
             opacity: 0;
             transition: opacity 0.7s ease;
+            user-select: none;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <audio src="lost_library.m4a" autoplay loop></audio>
-    <h1 id="back"><a href="#" class="butt"> Go Back </a></h1>
+    <h1 id="back" onclick="back()"><a class="butt"> Go Back </a></h1>
     <div id="container">
         <h1 id="title">Lost Library</h1>
         <h1 id="desc"> Unknown Knowledge, Abandoned Books, What Would You Like To Do?</h1>
         <div id="buttons">
-            <h1 id="library1" class="button" onclick="currentSection=1"> <a class="butt" href="#content">Library Section 1</a> </h1>
-            <h1 id="library2" class="button" onclick="currentSection=2"> <a class="butt" href="#content">Library Section 2</a> </h1>
-            <h1 id="library3" class="button" onclick="currentSection=3"> <a class="butt" href="#content">Library Section 3</a> </h1>
-            <h1 id="library4" class="button" onclick="currentSection=4"> <a class="butt" href="#content">Library Section 4</a> </h1>
-            <h1 id="library5" class="button" onclick="currentSection=5"> <a class="butt" href="#content">Library Section 5</a> </h1>
-            <h1 id="library6" class="button" onclick="currentSection=6"> <a class="butt" href="#content">Library Section 6</a> </h1>
-            <h1 id="library7" class="button" onclick="currentSection=7"> <a class="butt" href="#content">Library Section 7</a> </h1>
-            <h1 id="library8" class="button" onclick="currentSection=8"> <a class="butt" href="#content">Library Section 8</a> </h1>
-            <h1 id="library9" class="button" onclick="currentSection=9"> <a class="butt" href="#content">Library Section 9</a> </h1>
+            <h1 id="library1" class="button" onclick="goIn(1)"> <a class="butt">Library Section 1</a> </h1>
+            <h1 id="library2" class="button" onclick="goIn(2)"> <a class="butt">Library Section 2</a> </h1>
+            <h1 id="library3" class="button" onclick="goIn(3)"> <a class="butt">Library Section 3</a> </h1>
+            <h1 id="library4" class="button" onclick="goIn(4)"> <a class="butt">Library Section 4</a> </h1>
+            <h1 id="library5" class="button" onclick="goIn(5)"> <a class="butt">Library Section 5</a> </h1>
+            <h1 id="library6" class="button" onclick="goIn(6)"> <a class="butt">Library Section 6</a> </h1>
+            <h1 id="library7" class="button" onclick="goIn(7)"> <a class="butt">Library Section 7</a> </h1>
+            <h1 id="library8" class="button" onclick="goIn(8)"> <a class="butt">Library Section 8</a> </h1>
+            <h1 id="library9" class="button" onclick="goIn(9)"> <a class="butt">Library Section 9</a> </h1>
         </div>
         <div class="gap"></div>
         <h1 id="silent"> Ssht, it's still a library, be quiet..</h1>
@@ -239,9 +241,13 @@
             }
         }
 
-        function goIn() {
+        function goIn(section) {
             if (inTimer) return;
             inTimer = true;
+            window.location.hash = "#content";
+            if (section != null) {
+                currentSection = section;
+            }
             // fetcha();
             contentCH();
             container.style.opacity = '0';
@@ -264,6 +270,7 @@
         function back() {
             if (inTimer) return;
             inTimer = true;
+            // window.location.hash = "";
             content.style.opacity = '0';
             backButton.style.visibility = 'hidden';
             backButton.style.opacity = "0";
