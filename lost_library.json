@@ -3,5 +3,45 @@
         "title": "Library Section 1",
         "subtitle": "A Book",
         "content": "There was a book on the floor. It was open to a page with a drawing <br> Full of weird symbols and shapes, and creatures. <br><br>Lot's of scribbles, and disturbing images. <br>It was like a diary, but at the same time, a way to keep sanity. <br>"
+    },
+    "button2": {
+        "title": "Library Section 2",
+        "subtitle": "A Laptop",
+        "content": "Same place, different stuff. <br>A Laptop, with only a notepad inside. <br>...And a hangman game. <br>"
+    },
+    "button3": {
+        "title": "Library Section 3",
+        "subtitle": "A White Space",
+        "content": "You've been living here for as long as you can remember. <br><br>Your own personal space, with nothing but a white background and a single light source. <br><br>Your own world."
+    },
+    "button4": {
+        "title": "Library Section 4",
+        "subtitle": "An Imagination",
+        "content": "Headspace? <br><br>A place where you can be free from the real world, and just let your imagination run wild. <br>A place where you can be anything you want, and do anything you want. <br>A place where you can be yourself, and not care about what others think. <br>A place where you can be happy, and not care about the past or the future.<br><br>But where will you go when you want to leave? <br>Where will you go when you want to face reality again? <br>Where will you go when you want to be with others again? <br>Where will you go when you want to be alone again?"
+    },
+    "button5": {
+        "title": "Library Section 5",
+        "subtitle": "A Truth",
+        "content": "Why you keeping it by yourself? <br>Why you keeping it a secret? <br>Why you keeping it hidden? <br><br>They never knew, and they never will. <br>But you know. <br>You know the truth. <br>You'll always know the truth. <br>It's always has been inside you. <br>You cannot escape it. <br>"
+    },
+    "button6": {
+        "title": "Library Section 6",
+        "subtitle": "A Library",
+        "content": "There are books here, filled with stories and knowledge. <br>Filled with stories of adventure, romance, and mystery. <br>Filled with knowledge of science, history, and philosophy. <br>Filled with emotion, imagination, and creativity. <br><br>A place to escape, to learn, to grow. <br>A place to find yourself, to find others, to find the world. <br><br>A place, to gain wisdom, knowledge, and understanding. <br>A place, to find answers, to find questions, to find meaning. <br><br>A place, that has been lost, but can be found again. <br>A place, that has been forgotten, but can be remembered again. <br>A place, that has been destroyed, but can be rebuilt again. <br><br>Forgotten, but not gone. <br>Abandoned, but not lost. <br>Gone? Not really. <br><br>It's still here, waiting for you to find it. <br>It's still here, waiting for you to explore it. <br>It's still here, waiting for you to discover it. <br><br>It's still here, waiting for something to happen. <br><br>It's still here, right inside your mind. <br>"
+    },
+    "button7": {
+        "title": "Library Section 7",
+        "subtitle": "The Sin",
+        "content": "We made mistakes, and that's okay, right? <br>All the sins he made, every single one. <br>Every bad things he did. <br>Has turned into one. <br>What we call him, 'Tsumi'. <br><br>He is all his mistakes. <br>He is all his sins. <br>He is all his bad things. <br>He is all his wrongs. <br><br>He takes control. <br>He takes over. <br>He takes everything. <br><br>He did it one time, that's all it took. <br>He's here, because of him. <br>He's here, for him. <br><br>* Persist <br>* Surrender ❤️"
+    },
+    "button8": {
+        "title": "Library Section 8",
+        "subtitle": "Hatred",
+        "content": "Same place, different stuff. <br>A Laptop, with only a notepad inside. <br>...And a hangman game. <br>"
+    },
+    "button9": {
+        "title": "Library Section 9",
+        "subtitle": "[LOST]",
+        "content": "Same place, different stuff. <br>A Laptop, with only a notepad inside. <br>...And a hangman game. <br>"
     }
 }
