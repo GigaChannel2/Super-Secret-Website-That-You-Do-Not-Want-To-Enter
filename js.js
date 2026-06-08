@@ -235,7 +235,7 @@ function submit() {
             break;
         case "lost library":
             // code 111
-            goTo("lost_library.html");
+            goTo("lost_library");
             break;
         case "vallis cineris":
             // code 110
