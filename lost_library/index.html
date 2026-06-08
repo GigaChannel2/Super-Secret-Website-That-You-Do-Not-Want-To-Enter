@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Library</title>
+    <style>
+        @font-face {
+            font-family: "omori";
+            src: url(OMORI_GAME2.ttf);
+        }
+        body{
+            background-color: black;
+            color: white;
+            font-family: omori;
+        }
+        #container{
+            padding-left: 45px;
+            max-width: 700px;
+            display: block;
+            transition: all 0.35s ease;
+        }
+        #container #title{
+            font-size: 60px;
+        }
+        #container #silent{
+            /* padding-top: 190px; */
+        }
+        #container #buttons{
+            display: block;
+            max-width: 900px;
+            max-height: 400px;
+        }
+        #container .button{
+            border: 2px solid white;
+            padding: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            max-width: 200px;
+        }
+        .butt{
+            color: white;
+            text-decoration: none;
+        }
+        #container .gap{
+            height: 1000px;
+        }
+        #content {
+            padding-left: 45px;
+            max-width: 700px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        #content #title{
+            font-size: 60px;
+            font-weight: normal;
+        }
+        #content #back{
+            margin-left: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 3;
+            border: 2px solid white;
+            max-width: 100px;
+            padding: 2px;
+            text-align: center;
+            background-color: black;
+        }
+        #content .desc{
+            padding-top: 20px;
+            max-width: 600px;
+            padding-left: 20px;
+            font-weight: normal;
+        }
+        #content #subtitle{
+            font-size: 50px;
+        }
+        .gap{
+            height: 1000px;
+        }
+        #back {
+            visibility: hidden;
+            margin-left: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 3;
+            border: 2px solid white;
+            max-width: 100px;
+            padding: 2px;
+            text-align: center;
+            background-color: black;
+            opacity: 0;
+            transition: opacity 0.7s ease;
+            user-select: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <audio src="lost_library.m4a" autoplay loop></audio>
+    <h1 id="back" onclick="back()"><a class="butt"> Go Back </a></h1>
+    <div id="container">
+        <h1 id="title">Lost Library</h1>
+        <h1 id="desc"> Unknown Knowledge, Abandoned Books, What Would You Like To Do?</h1>
+        <div id="buttons">
+            <h1 id="library1" class="button" onclick="goIn(1)"> <a class="butt">Library Section 1</a> </h1>
+            <h1 id="library2" class="button" onclick="goIn(2)"> <a class="butt">Library Section 2</a> </h1>
+            <h1 id="library3" class="button" onclick="goIn(3)"> <a class="butt">Library Section 3</a> </h1>
+            <h1 id="library4" class="button" onclick="goIn(4)"> <a class="butt">Library Section 4</a> </h1>
+            <h1 id="library5" class="button" onclick="goIn(5)"> <a class="butt">Library Section 5</a> </h1>
+            <h1 id="library6" class="button" onclick="goIn(6)"> <a class="butt">Library Section 6</a> </h1>
+            <h1 id="library7" class="button" onclick="goIn(7)"> <a class="butt">Library Section 7</a> </h1>
+            <h1 id="library8" class="button" onclick="goIn(8)"> <a class="butt">Library Section 8</a> </h1>
+            <h1 id="library9" class="button" onclick="goIn(9)"> <a class="butt">Library Section 9</a> </h1>
+        </div>
+        <div class="gap"></div>
+        <h1 id="silent"> Ssht, it's still a library, be quiet..</h1>
+    </div>
+    <div id="content">
+        <h1 id="title">Library Section ?</h1>
+        <h1 id="subtitle">[LOST]</h1>
+        <h1 class="desc">
+            [LOST] <br>
+            [LOST] <br>
+            [LOST] <br>
+            [LOST] <br>
+        </h1>
+        <div class="gap"></div>
+    </div>
+    <script>
+        const debug = true;
+        const buttons = document.querySelectorAll('.button');
+        const backButton = document.getElementById('back');
+        const container = document.getElementById('container');
+        const content = document.getElementById('content');
+        const params = new URLSearchParams(location.search);
+        const lib = params.get("library");
+
+        let title = content.querySelector('#title');
+        let subtitle = content.querySelector('#subtitle');
+        let desc = content.querySelector('.desc');
+        let currentSection = null;
+        let inTimer = false;
+
+        if (debug) {
+            setInterval(() => {
+                console.log(currentSection);
+                console.log(history.state);
+            }, 100);
+        }
+        // if (location.hash === "#content") {
+        //     goIn();
+        // }
+
+
+        //Old hash change code, changed to push state
+
+        // window.addEventListener("hashchange", () => {
+        //     if (location.hash === "#content") {
+        //         goIn();
+        //     } else {
+        //         back();
+        //     }
+        // });
+
+        // buttons.forEach(button => {
+        //     button.addEventListener('click', () => {
+        //         // goIn();
+                
+        //         history.pushState(
+        //             { section: currentSection },
+        //             "", 
+        //             "?library=" + currentSection
+        //         );
+        //     });
+        // });
+
+        // backButton.addEventListener('click', () => {
+        //     back();
+        // });
+
+        window.addEventListener("popstate", (e) => {
+            const params = new URLSearchParams(location.search);
+            const lib = params.get("library");
+
+            if (lib) {
+                goIn(Number(lib));
+            } else {
+                back();
+            }
+        });
+
+        async function fetcha() {
+            try {
+                const res = await fetch("https://raw.githubusercontent.com/GigaChannel2/Definitely-Not-A-Website/main/lost_library.json")
+                const data = await res.json();
+            
+                const result = data["button" + currentSection];
+                
+                title.textContent = result.title;
+                subtitle.textContent = result.subtitle;
+                desc.innerHTML = result.content;
+
+            } catch (error) {
+                console.log(error);
+                contentCH();
+            }
+        }
+
+        function contentCH() {
+
+            switch (currentSection) {
+                case 1:
+                    title.textContent = "Library Section 1";
+                    subtitle.textContent = "A Book";
+                    desc.innerHTML = "There was a book on the floor. It was open to a page with a drawing <br> Full of weird symbols and shapes, and creatures. <br><br>Lot's of scribbles, and disturbing images. <br>It was like a diary, but at the same time, a way to keep sanity. <br>";
+                    break;
+                case 2:
+                    title.textContent = "Library Section 2";
+                    subtitle.textContent = "A Laptop";
+                    desc.innerHTML = "Same place, different stuff. <br>A Laptop, with only a notepad inside. <br>...And a hangman game. <br>";
+                    break;
+                case 3:
+                    title.textContent = "Library Section 3";
+                    subtitle.textContent = "A White Space";
+                    desc.innerHTML = "You've been living here for as long as you can remember. <br><br>Your own personal space, with nothing but a white background and a single light source. <br><br>Your own world.";
+                    break;
+                case 4:
+                    title.textContent = "Library Section 4";
+                    subtitle.textContent = "An Imagination";
+                    desc.innerHTML = "Headspace? <br><br>A place where you can be free from the real world, and just let your imagination run wild. <br>A place where you can be anything you want, and do anything you want. <br>A place where you can be yourself, and not care about what others think. <br>A place where you can be happy, and not care about the past or the future.<br><br>But where will you go when you want to leave? <br>Where will you go when you want to face reality again? <br>Where will you go when you want to be with others again? <br>Where will you go when you want to be alone again?";
+                    break;
+                case 5:
+                    title.textContent = "Library Section 5";
+                    subtitle.textContent = "A Truth";
+                    desc.innerHTML = "Why you keeping it by yourself? <br>Why you keeping it a secret? <br>Why you keeping it hidden? <br><br>They never knew, and they never will. <br>But you know. <br>You know the truth. <br>You'll always know the truth. <br>It's always has been inside you. <br>You cannot escape it. <br>";
+                    break;
+                case 6:
+                    title.textContent = "Library Section 6";
+                    subtitle.textContent = "A Library";
+                    desc.innerHTML = "There are books here, filled with stories and knowledge. <br>Filled with stories of adventure, romance, and mystery. <br>Filled with knowledge of science, history, and philosophy. <br>Filled with emotion, imagination, and creativity. <br><br>A place to escape, to learn, to grow. <br>A place to find yourself, to find others, to find the world. <br><br>A place, to gain wisdom, knowledge, and understanding. <br>A place, to find answers, to find questions, to find meaning. <br><br>A place, that has been lost, but can be found again. <br>A place, that has been forgotten, but can be remembered again. <br>A place, that has been destroyed, but can be rebuilt again. <br><br>Forgotten, but not gone. <br>Abandoned, but not lost. <br>Gone? Not really. <br><br>It's still here, waiting for you to find it. <br>It's still here, waiting for you to explore it. <br>It's still here, waiting for you to discover it. <br><br>It's still here, waiting for something to happen. <br><br>It's still here, right inside your mind. <br>";
+                    break;
+                case 7:
+                    title.textContent = "Library Section 7";
+                    subtitle.textContent = "The Sin";
+                    desc.innerHTML = "We made mistakes, and that's okay, right? <br>All the sins he made, every single one. <br>Every bad things he did. <br>Has turned into one. <br>What we call him, 'Tsumi'. <br><br>He is all his mistakes. <br>He is all his sins. <br>He is all his bad things. <br>He is all his wrongs. <br><br>He takes control. <br>He takes over. <br>He takes everything. <br><br>He did it one time, that's all it took. <br>He's here, because of him. <br>He's here, for him. <br><br>* Persist <br>* Surrender ❤️";
+                    break;
+                case 8:
+                    title.textContent = "Library Section 8";
+                    subtitle.textContent = "Hatred";
+                    desc.innerHTML = "Your hates on everyone, including you. <br>Where do you think they're going? <br><br>They were kept inside you, struggling to get out. <br>You have hold them for too long. <br>Too much to keep inside. <br>You have made, Tsumi.";
+                    break;
+                case 9:
+                    title.textContent = "Library Section 9";
+                    subtitle.textContent = "[LOST]";
+                    desc.innerHTML = "[LOST] <br>[LOST] <br>[LOST] <br>[LOST] <br>[LOST] <br>";
+                    break;
+                case 143:
+                    title.textContent = "Library Section 143";
+                    subtitle.textContent = "Love from a Friend";
+                    desc.innerHTML = "not yet, work in progress (looking for an idea), why are you here anyway";
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function goIn(section) {
+            if (inTimer) return;
+            inTimer = true;
+            // window.location.hash = "#content";
+            if (section != null) {
+                currentSection = section;
+            }
+            history.pushState(
+                { section: currentSection },
+                "",
+                "?library=" + currentSection
+            );
+            // fetcha();
+            contentCH();
+            container.style.opacity = '0';
+            backButton.style.visibility = 'visible';
+            backButton.style.opacity = "1";
+            setTimeout(() => {
+                container.style.display = 'none';
+                content.style.display = 'block';
+
+                requestAnimationFrame(() => {
+                    content.style.opacity = "1";
+                });
+
+                setTimeout(() => {
+                    inTimer = false;
+                }, 350);
+            }, 350);
+        }
+
+        function back() {
+            if (inTimer) return;
+            inTimer = true;
+            // window.location.hash = "";
+            history.pushState(
+                {},
+                "",
+                location.pathname
+            );
+            content.style.opacity = '0';
+            backButton.style.visibility = 'hidden';
+            backButton.style.opacity = "0";
+            setTimeout(() => {
+                content.style.display = 'none';
+                container.style.display = 'block';
+
+                requestAnimationFrame(() => {
+                    container.style.opacity = "1";
+                });
+                
+                setTimeout(() => {
+                    inTimer = false;
+                }, 350);
+            }, 350);
+        }
+
+        if (lib) {
+            goIn(Number(lib));
+        }
+    </script>
+</body>
+</html>
