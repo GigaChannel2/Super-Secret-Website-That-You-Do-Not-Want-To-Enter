@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To... Red Space?</title>
+    <link rel="icon" href="../icons/redspace.png">
+    <style>
+        body{
+            background: url("../img/redspace_bg.webp") repeat;
+            top: 0;
+        }
+        #bg{
+            background: url("../img/redspace_bg.webp") repeat;
+            z-index: -1;
+            position: fixed;
+            width: 300%;
+            height: 200%;
+        }
+        #container{
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            width: 100%;
+            height: 98vh;
+        }
+        #hands{
+            position: fixed;
+            width: 100vw;
+            height: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            display: block;
+            justify-self: center;
+            align-self: center;
+        }
+    </style>
+</head>
+<body id="bod">
+    <audio id="aud" src="listening.m4a" autoplay loop></audio>
+    <div id="bg"></div>
+    <div id="container">
+        <img id="hands" src="../img/red_hands.webp" alt="">
+    </div>
+    <script>
+        let x = 0;
+        let y = 0;
+
+        document.getElementById("aud").volume = 1;
+
+        loop();
+
+        function loop() {
+            x += 1;
+            y += 1;
+
+            document.getElementById("bg").style.backgroundPosition = `${x}px ${y}px`;
+
+            requestAnimationFrame(loop);
+        }
+
+    </script>
+</body>
+</html>
