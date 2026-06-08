@@ -133,11 +133,14 @@
         <div class="gap"></div>
     </div>
     <script>
-        const debug = false;
+        const debug = true;
         const buttons = document.querySelectorAll('.button');
         const backButton = document.getElementById('back');
         const container = document.getElementById('container');
         const content = document.getElementById('content');
+        const params = new URLSearchParams(location.search);
+        const lib = params.get("library");
+
         let title = content.querySelector('#title');
         let subtitle = content.querySelector('#subtitle');
         let desc = content.querySelector('.desc');
@@ -147,29 +150,50 @@
         if (debug) {
             setInterval(() => {
                 console.log(currentSection);
+                console.log(history.state);
             }, 100);
         }
-        if (location.hash === "#content") {
-            goIn();
-        }
+        // if (location.hash === "#content") {
+        //     goIn();
+        // }
 
-        window.addEventListener("hashchange", () => {
-            if (location.hash === "#content") {
-                goIn();
-            } else {
-                back();
-            }
-        });
+
+        //Old hash change code, changed to push state
+
+        // window.addEventListener("hashchange", () => {
+        //     if (location.hash === "#content") {
+        //         goIn();
+        //     } else {
+        //         back();
+        //     }
+        // });
 
         // buttons.forEach(button => {
         //     button.addEventListener('click', () => {
-        //         goIn();
+        //         // goIn();
+                
+        //         history.pushState(
+        //             { section: currentSection },
+        //             "", 
+        //             "?library=" + currentSection
+        //         );
         //     });
         // });
 
         // backButton.addEventListener('click', () => {
         //     back();
         // });
+
+        window.addEventListener("popstate", (e) => {
+            const params = new URLSearchParams(location.search);
+            const lib = params.get("library");
+
+            if (lib) {
+                goIn(Number(lib));
+            } else {
+                back();
+            }
+        });
 
         async function fetcha() {
             try {
@@ -244,10 +268,15 @@
         function goIn(section) {
             if (inTimer) return;
             inTimer = true;
-            window.location.hash = "#content";
+            // window.location.hash = "#content";
             if (section != null) {
                 currentSection = section;
             }
+            history.pushState(
+                { section: currentSection },
+                "",
+                "?library=" + currentSection
+            );
             // fetcha();
             contentCH();
             container.style.opacity = '0';
@@ -270,7 +299,12 @@
         function back() {
             if (inTimer) return;
             inTimer = true;
-            window.location.hash = "";
+            // window.location.hash = "";
+            history.pushState(
+                {},
+                "",
+                location.pathname
+            );
             content.style.opacity = '0';
             backButton.style.visibility = 'hidden';
             backButton.style.opacity = "0";
@@ -286,6 +320,10 @@
                     inTimer = false;
                 }, 350);
             }, 350);
+        }
+
+        if (lib) {
+            goIn(Number(lib));
         }
     </script>
 </body>
