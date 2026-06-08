@@ -325,7 +325,7 @@ function submit() {
             break;
         case "red space":
             // code 85
-            goTo("redspace.html");
+            goTo("red_space");
             break;
         case "pupue":
             // code 84
@@ -373,15 +373,15 @@ function submit() {
             break;
         case "white door":
             // code 71
-            goTo("whitedoor.html");
+            goTo("white_door");
             break;
         case "white space":
             // code 70
-            goTo("whitespace.html");
+            goTo("white_space");
             break;
         case "black space":
             // code 69
-            goTo("blackspace.html");
+            goTo("black_space");
             break;
         case "bocchi the rock":
             // code 68
