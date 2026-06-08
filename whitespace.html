@@ -2,101 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0; URL=white_space">
     <title>White Space.</title>
-    <link rel="icon" href="icons/whitespace.png">
     <style>
-        @font-face {
-            font-family: 'omori';
-            src: url('OMORI_GAME2.ttf');
-            font-style: normal;
-            font-weight: normal;
-        }
         body{
-            font-family: omori;
-            text-align: center;
-            margin-top: 2%;
             background-color: white;
-            display: flex;
-            text-align: center;
-            align-items: center;
-            height: 90vh;
-            justify-content: center;
-        }
-        #vid{
-            width: 100%;
-            height: auto;
-            display: block;
-            pointer-events: none;
-            image-rendering: pixelated;
-        }
-        #space{
-            opacity: 0;
-            transition: opacity 8s ease-in-out;
-            display: block;
-            width: 100%;
-            max-width: 900px;
         }
     </style>
 </head>
 <body>
-    <audio src="whitespace.m4a" loop id="aud">
-    </audio>
-    <div id="space">
-        <h1>A place to survive, but not to live.</h1>
-        <video muted autoplay loop id="vid">
-            <source src="vid/whitespace.mp4" type="video/mp4">
-        </video>
-    </div>
-    <script>
-        const audio = document.getElementById("aud");
-        let started = false;
-        audio.play();
-        audio.play().then(() => {
-            fadeIn(audio, 1, 8000);
-            boom();
-            // document.removeEventListener("click", startAudio);
-            // document.removeEventListener("keydown", startAudio);
-            // document.removeEventListener("scroll", startAudio);
-        });
-
-        
-        // document.addEventListener("click", startAudio);
-        // document.addEventListener("keydown", startAudio);
-        // document.addEventListener("scroll", startAudio);
     
-        // function startAudio() {
-        //     audio.muted = false;
-        //     audio.volume = 0;
-        //     started = true;
-
-        //     audio.play().then(() => {
-        //         fadeIn(audio, 1, 8000);
-        //         boom();
-        //         // document.removeEventListener("click", startAudio);
-        //         // document.removeEventListener("keydown", startAudio);
-        //         // document.removeEventListener("scroll", startAudio);
-        //     }).catch(() => {
-        //         started = false;
-        //         // kalau gagal, tunggu interaction berikutnya
-        //     });
-        // }
-
-        function boom() {
-            document.getElementById("space").style.opacity = 1;
-            fadeIn(audio, 1, 8000);
-        }
-
-        function fadeIn(audio, targetVolume, duration) {
-            let step = targetVolume / (duration / 50);
-            let interval = setInterval(() => {
-                if (audio.volume < targetVolume) {
-                    audio.volume = Math.min(audio.volume + step, targetVolume);
-                } else {
-                    clearInterval(interval);
-                }
-            }, 50);
-        }
-    </script>
 </body>
 </html>
