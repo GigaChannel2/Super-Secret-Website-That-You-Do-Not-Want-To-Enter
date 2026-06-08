@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyrefly Forest</title>
+    <style>
+        @font-face {
+            font-family: omori;
+            src: url(../OMORI_GAME2.ttf);
+        }
+        body {
+            font-family: omori;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            image-rendering: pixelated;
+        }
+        #fog {
+            background: url("fog.png") repeat;
+            z-index: 3;
+        }
+        #map {
+            display: block;
+            /* width: 100%; */
+            /* transform: scale(3); */
+            /* height: auto; */
+            /* justify-self: center;
+            align-self: center; */
+            transform: scale(2);
+            transform-origin: top left;
+            z-index: 2;
+            position: relative;
+        }
+        #container {
+            /* display: flex; */
+            /* width: 100%; */
+            /* max-width: 900px; */
+            /* margin: 0 auto; */
+            /* position: absolute; */
+            /* justify-content: center; */
+            /* align-items: center; */
+            width: 100vw;
+            height: 100vh;
+            /* pointer-events: none; */
+        }
+        #fog {
+            position: fixed;
+            width: 300%;
+            height: 200%;
+            top: 0;
+            background: url("fog.png") repeat;
+            /* background-repeat: repeat; */
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <audio src="bgm.m4a" autoplay loop></audio>
+    <div id="container">
+        <img id="map" src="map.png">
+        <div id="fog"></div>
+        <!-- <img id="fog" src="fog.png"> -->
+    </div>
+    <script>
+        let x = 0;
+        let y = 0;
 
+        // document.getElementById("aud").volume = 1;
+
+        loop();
+
+        function loop() {
+            x -= 15;
+            y -= 15;
+
+            document.getElementById("fog").style.backgroundPosition = `${x}px ${y}px`;
+
+            requestAnimationFrame(loop);
+        }
+    </script>
+</body>
+</html>
