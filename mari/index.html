@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Mari...?</title>
+    <link rel="icon" href="icons/expand.png">
+    <style>
+        body{
+            /* background-image: url("Rain_Area_29.webp"); */
+            background-color: #CF9CB9;
+            cursor:grab;
+            image-rendering: pixelated;
+            user-select: none;
+        }
+        body::-webkit-scrollbar{
+            display: none;
+        }
+        #map{
+            width: 100%;
+            height: 100%;
+            pointer-events:none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            z-index: 1;
+            position: absolute;
+        }
+        #container{
+            position: relative;
+            width: 3200px;
+            height: 3200px;
+            transform: scale(1.8);
+            transform-origin: middle middle;
+        }
+        #dia{
+            position: fixed;
+            bottom: -2000px;
+            max-width: 90vw;
+            left: 50%;
+            max-width: 90%;
+            height: auto;
+            transform: translateX(-50%);
+            z-index: 3;
+            user-select: none;
+            opacity: 0;
+            transition: all 0.4s ease;
+            visibility: hidden;
+        }
+        #dia.show{
+            bottom: 10vh;
+            visibility: visible;
+            opacity: 1;
+        }
+        #mari {
+            position: absolute;
+            left: 1400px;
+            top: 1400px;
+            height: 200px;
+            position: absolute;
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            position: relative;
+            z-index: 2;
+        }
+        body:active{
+            cursor: grabbing;
+        }
+    </style>
+</head>
+<body>
+    <audio src="../bs_distance.m4a" autoplay loop></audio>
+    <img id="dia" src="../img/mari/dialogue/expand.png" alt="">
+    <div id="container">
+        <img id="map" src="../Rain_Area_29.png" alt="">
+        <img id="mari" src="../img/mari/mari.gif" alt="">
+    </div>
+    <script>
+        const isDesktop = window.matchMedia("(pointer: fine)").matches;
+        let clicked = 0;
+        let diaRan = 0;
+        let mari = document.getElementById("mari");
+        let dialogue = document.getElementById("dia");
+        let isCutscene = false;
+
+        
+        dialogue.addEventListener("click", () => {
+            isCutscene = false;
+            hideDialog();
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.code === "Space") {
+                e.preventDefault();
+                isCutscene = false;
+                hideDialog();
+            }
+        });
+
+        if (isCutscene == false){
+            mari.addEventListener("click", () => {
+                if (isCutscene) return;
+                clicked += 1;
+                diaRan = getRndInteger(1, 4);
+                setTimeout(() => {
+                    showDialog();
+                }, 143);
+                isCutscene = true;
+            
+                switch(clicked){
+                    default:
+                        break;
+                    case 14:
+                        mari.src = "../img/mari/mari.png";
+                        break;
+                    case 15:
+                        mari.src = "../img/mari/mari2.png";
+                        break;
+                    case 16:
+                        mari.src = "../img/mari/mari3.png";
+                        break;
+                }
+                if(clicked >= 17){
+                    mari.src = "../img/mari/mari4.png";
+                }
+            });
+
+            if (isDesktop)
+            {
+                let isDown = false;
+                let mouseX = 0;
+                let mouseY = 0;
+
+                document.addEventListener("mousedown", () => {
+                    if (isCutscene) return;
+                    isDown = true;
+                });
+
+                document.addEventListener("mouseup", () => {
+                    isDown = false;
+                });
+
+                document.addEventListener("mousemove", (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+
+                
+                function loop() {
+                    if (isDown) {
+                        const centerX = window.innerWidth / 2;
+                        const centerY = window.innerHeight / 2;
+
+                        const dx = mouseX - centerX;
+                        const dy = mouseY - centerY;
+
+                        const speed = 0.05;
+
+                        window.scrollBy(
+                            dx * speed,
+                            dy * speed
+                        );
+                    }
+
+                    requestAnimationFrame(loop);
+                }
+
+                loop();
+            }
+        }
+
+        function getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min) ) + min;
+        }
+
+
+        function showDialog() {
+            dialogue.classList.add("show");
+            if (clicked == 1) {
+                dialogue.src = "../img/mari/dialogue/expand1.png";   
+            }
+            if (clicked <= 16 && clicked >= 0) {
+                switch (diaRan) {
+                    case 1:
+                        dialogue.src = "../img/mari/dialogue/expand1.png";
+                        break;
+                    case 2:
+                        dialogue.src = "../img/mari/dialogue/expand2.png";
+                        break;
+                    case 3:
+                        dialogue.src = "../img/mari/dialogue/expand3.png";
+                        break;
+                    case 4:
+                        dialogue.src = "../img/mari/dialogue/expand4.png";
+                        break;
+                }
+            } else {
+                dialogue.src = "../img/mari/dialogue/expand.png";
+            }
+            isCutscene = true;
+        }
+
+        function hideDialog() {
+            isCutscene = false;
+            dialogue.classList.remove("show");
+        }
+    </script>
+</body>
+</html>
