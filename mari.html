@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="refresh" content="0; URL=white_space">
     <title>Mari...?</title>
     <link rel="icon" href="icons/expand.png">
     <style>
@@ -37,7 +38,6 @@
             position: fixed;
             bottom: -2000px;
             max-width: 90vw;
-            bottom: -150px;
             left: 50%;
             max-width: 90%;
             height: auto;
@@ -147,7 +147,7 @@
                     mouseY = e.clientY;
                 });
 
-                // loop biar gerak terus walau mouse diam
+                
                 function loop() {
                     if (isDown) {
                         const centerX = window.innerWidth / 2;
@@ -156,7 +156,7 @@
                         const dx = mouseX - centerX;
                         const dy = mouseY - centerY;
 
-                        const speed = 0.05; // atur feel di sini
+                        const speed = 0.05;
 
                         window.scrollBy(
                             dx * speed,
