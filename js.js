@@ -635,7 +635,7 @@ function showwarn() {
 }
 
 function warn_con() {
-    goTo("mari.html")
+    goTo("mari")
 }
 
 function close_warn() {
