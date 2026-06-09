@@ -1,7 +1,11 @@
+
+let params = new URLSearchParams(location.search);
+let lib = params.get("q");
+
 let password = document.getElementById("tbox");
 let txt = document.getElementById("txt");
 let but = document.getElementById("but")
-let pass = "";
+let pass = null;
 let sound = document.getElementById("aud");
 let on = document.getElementById("on");
 let body = document.getElementById("body");
@@ -17,6 +21,13 @@ on.play();
 setTimeout(function() {
     body.style.opacity = 1;
 }, 1);
+
+setInterval(() => {
+    // console.log(lib);
+    console.log(pass);
+    
+}, 500);
+
 /*password.addEventListener("input", function(event) {
     this.value = this.value.toUpperCase();
 });*/
@@ -96,8 +107,12 @@ function close_d() {
     dia.close();
 }
 
-async function submit_new() {
+async function submit_new(pw = null) {
     try {
+        if (pw != null) {
+            // pass = password.value.toLowerCase();
+            pass = pw.toLowerCase();
+        }
         const res = await fetch("https://raw.githubusercontent.com/GigaChannel2/Definitely-Not-A-Website/main/password_code.json")
         const data = await res.json();
 
@@ -175,7 +190,7 @@ function submit() {
             break;
         case "good morning":
             //code 126 
-            goTo("goodmorning.html");
+            goTo("good-morning");
             break;
         case "searching for a world":
             //code 125
@@ -445,7 +460,7 @@ function submit() {
             break;
         case "duet":
             // code 51
-            goTo("duet.html");
+            goTo("duet");
             break;
         case "undertale":
             // code 50
@@ -708,4 +723,10 @@ function textCh(value) {
 
 function goTo(value) {
     window.location.href = value;
+}
+
+if (lib) {
+    setTimeout(() => {
+        submit_new(String(lib));
+    }, 100);
 }
