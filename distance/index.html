@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The distance between two.</title>
+    <style>
+        @font-face {
+            font-family: "8bit";
+            src: url(../fonts/8bitOperatorPlus-Bold.ttf);
+        }
+        body {
+            background: black;
+            color: white;
+            margin: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            font-family: "8bit";
+            font-weight: normal;
+            text-align: center;
+            text-rendering: pixelated;
+        }
+        #container {
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            /* display: flex; */
+            /* justify-content: center; */
+            /* align-items: center; */
+            transform: translate(-50%, -50%);
+            /* height: 90vh; */
+            transition: opacity 0.5s ease;
+        }
+        #btn {
+            color: black;
+            position: absolute;
+            top: 40vh;
+            user-select: none;
+            cursor: pointer;
+        }
+        #secret {
+            transition: opacity 0.5s ease;
+            opacity: 0;
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: "8bit";
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <audio src="bgm.m4a" autoplay loop></audio>
+    <div id="container">
+        <h1>Distance.</h1>
+        <div class="gap"></div>
+        <h1 id="btn" onclick="secret()"> BUTTFACE </h1>
+    </div>
+    <div id="secret">
+        <h1>
+            She's faraway, but close to my heart.
+        </h1>
+    </div>
+    <script>
+        let container = document.getElementById("container");
+        let secretDiv = document.getElementById("secret");
+        function secret() {
+            container.style.opacity = "0";
+            setTimeout(() => {
+                container.style.display = "none";
+                secretDiv.style.display = "block";
+                setTimeout(() => {
+                    secretDiv.style.opacity = "1";
+                }, 30);
+            }, 500);
+        }
+    </script>
+</body>
+</html>
