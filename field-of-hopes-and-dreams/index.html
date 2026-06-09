@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
+    <title>Field Of Hopes And Dreams</title>
+    <link rel="icon" href="../icons/fohad.png">
+    <style>
+        body{
+            margin: 0;
+            background-color: black;
+            image-rendering: pixelated;
+        }
+        #map{
+            width: 1000px;
+            height: 1000px;
+            transform: scale(3);
+            left: 15px;
+            top: 15px;
+            transform-origin: top left;
+        }
+        #viewport{
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        #world{
+            position: absolute;
+            pointer-events: none;
+        }
+        #field{
+            width: 100%;
+            height: 100%;
+        }
+        #char{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 500px;
+            top: 500px;
+            z-index: 2;
+            /* display: flex;
+            justify-content: center; */
+        }
+        #char img{
+            /* width: auto;
+            height: 50px; */
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <audio src="fohad.m4a" autoplay loop></audio>
+    <div id="viewport">
+        <div id="world">
+            <div id="map">
+                <div id="char"><img src="../img/kris/kris_dw_down.png" alt="" id="char_sprite"></div>
+                <img src="../img/fohad.gif" alt="" id="field">
+            </div>
+        </div>
+    </div>
+    <script>
+        let camX = 0;
+        let camY = 0;
+
+        let charX = 300;
+        let charY = 300;
+        let borderU = 19;
+        let borderD = 980;
+        let borderL = 10;
+        let borderR = 990;
+        let speed = 3;
+        let targetSpeed = 3;
+        let moving = false;
+
+        let currentSprite = "";
+        let sprite = document.getElementById("char_sprite");
+        let direction = "down";
+
+        const world = document.getElementById("world");
+        const keys = {};
+        const char = document.getElementById("char");
+
+        document.addEventListener("keydown", (e) => {
+            keys[e.key.toLowerCase()] = true;
+        });
+
+        document.addEventListener("keyup", (e) => {
+            keys[e.key.toLowerCase()] = false;
+            moving = false;
+        });
+
+        function setSprite(sprt) {
+            if (currentSprite !== sprt) {
+                sprite.src = sprt;
+                currentSprite = sprt;
+            }
+        }
+
+        function update() {
+            targetSpeed = keys["shift"] || keys["x"] ? 3.5 : 1.5;
+
+            speed += (targetSpeed - speed) * 0.1;
+
+            if (keys["arrowup"]) {
+                charY -= speed;
+                direction = "up";
+                moving = true;
+            }
+            if (keys["arrowdown"]) {
+                charY += speed;
+                direction = "down";
+                moving = true;
+            }
+            if (keys["arrowleft"]) { 
+                charX -= speed;
+                direction = "left";
+                moving = true;
+            }
+            if (keys["arrowright"]) {
+                charX += speed;
+                direction = "right";
+                moving = true;
+            }
+
+            if (moving) {    
+                switch (direction) {
+                    case "left":
+                        if (keys["arrowup"]) {
+                            setSprite(
+                                keys["shift"] || keys["x"]
+                                    ? "../img/kris/kris_dw_up_run.gif"
+                                    : "../img/kris/kris_dw_up.gif"
+                            );
+                        } else if (keys["arrowdown"]) {
+                            setSprite(
+                                keys["shift"] || keys["x"]
+                                    ? "../img/kris/kris_dw_down_run.gif"
+                                    : "../img/kris/kris_dw_down.gif"
+                            );
+                        } else {
+                            setSprite(
+                                keys["shift"] || keys["x"]
+                                    ? "../img/kris/kris_dw_left_run.gif"
+                                    : "../img/kris/kris_dw_left.gif"
+                            );
+                        }
+                        break;
+                    case "right":
+                        if (keys["arrowup"]) {
+                            setSprite(
+                                keys["shift"] || keys["x"]
+                                    ? "../img/kris/kris_dw_up_run.gif"
+                                    : "../img/kris/kris_dw_up.gif"
+                            );
+                        } else if (keys["arrowdown"]) {
+                            setSprite(
+                                keys["shift"] || keys["x"]
+                                    ? "../img/kris/kris_dw_down_run.gif"
+                                    : "../img/kris/kris_dw_down.gif"
+                            );
+                        } else {
+                            setSprite(
+                                keys["shift"] || keys["x"]
+                                    ? "../img/kris/kris_dw_right_run.gif"
+                                    : "../img/kris/kris_dw_right.gif"
+                            );
+                        }
+                        break;
+                    case "up":
+                        setSprite(
+                            keys["shift"] || keys["x"]
+                                ? "../img/kris/kris_dw_up_run.gif"
+                                : "../img/kris/kris_dw_up.gif"
+                        );
+                        break;
+                    case "down":
+                        setSprite(
+                            keys["shift"] || keys["x"]
+                                ? "../img/kris/kris_dw_down_run.gif"
+                                : "../img/kris/kris_dw_down.gif"
+                        );
+                        break;
+                }
+            } else {
+                switch (direction) {
+                    case "up":
+                        setSprite("../img/kris/kris_dw_up.png")
+                        break;
+                    case "down":
+                        setSprite("../img/kris/kris_dw_down.png")
+                        break;
+                    case "left":
+                        setSprite("../img/kris/kris_dw_left.png")
+                        break;
+                    case "right":
+                        setSprite("../img/kris/kris_dw_right.png")
+                        break;
+                }
+            }
+
+            camX = charX * 3 - window.innerWidth / 2;
+            camY = charY * 3 - window.innerHeight / 2;
+
+            if (charX <= borderL) charX = borderL;
+            if (charY <= borderU) charY = borderU;
+            if (charX >= borderR) charX = borderR;
+            if (charY >= borderD) charY = borderD;
+
+            char.style.left = charX + "px";
+            char.style.top = charY + "px";
+            camX = Math.max(0, Math.min(camX, 3000 - window.innerWidth));
+            camY = Math.max(0, Math.min(camY, 3000 - window.innerHeight));
+
+            world.style.transform = `translate(${-camX}px, ${-camY}px)`;
+
+            requestAnimationFrame(update);
+        }
+
+        update();
+    </script>
+</body>
+</html>
