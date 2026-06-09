@@ -180,7 +180,7 @@ function submit() {
             break;
         case "oyasumi":
             //code 128
-            goTo("oyasumi.html");
+            goTo("oyasumi");
             break;
         case "cyber world":
         case "a cyber world":
@@ -226,11 +226,11 @@ function submit() {
             break;
         case "with hope crossed on our hearts":
             // code 117
-            goTo("with_hope_crossed_on_our_hearts.html");
+            goTo("with-hope-crossed-on-our-hearts");
             break;
         case "with hope crossed on her heart":
             // code 116
-            goTo("with_hope_crossed_on_her_heart.html");
+            goTo("with-hope-crossed-on-her-heart");
             break;
         case "us praktek manager":
             // code 115
@@ -456,7 +456,7 @@ function submit() {
             break;
         case "gone":
             // code 52
-            goTo("gone.html");
+            goTo("gone");
             break;
         case "duet":
             // code 51
