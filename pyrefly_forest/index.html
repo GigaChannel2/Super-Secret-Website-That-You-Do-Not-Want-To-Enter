@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <title>Pyrefly Forest</title>
     <style>
         @font-face {
@@ -14,8 +14,9 @@
             background-color: black;
             margin: 0;
             padding: 0;
-            height: fit-content;
+            /* height: fit-content; */
             image-rendering: pixelated;
+            height: 640px;
         }
         #map {
             display: block;
@@ -24,7 +25,6 @@
             /* height: auto; */
             /* justify-self: center;
             align-self: center; */
-            transform-origin: top left;
             z-index: 2;
             position: relative;
         }
@@ -39,6 +39,7 @@
             width: 960px;
             height: 640px;
             transform: scale(2.4);
+            transform-origin: top left;
             /* pointer-events: none; */
         }
         #fog {
