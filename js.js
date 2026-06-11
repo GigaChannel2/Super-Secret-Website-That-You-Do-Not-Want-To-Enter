@@ -332,7 +332,7 @@ function submit() {
             break;
         case "dark place":
             // code 87
-            goTo("darkplace.html");
+            goTo("dark-place");
             break;
         case "playing forever":
             // code 86
