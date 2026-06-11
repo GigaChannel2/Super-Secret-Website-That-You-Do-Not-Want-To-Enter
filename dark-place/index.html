@@ -12,7 +12,7 @@
             display: none;
         }
         #light1{
-            position: absolute;
+            position: fixed;
             z-index: 2;
             display: block;
             width: 100%;
@@ -23,7 +23,7 @@
             visibility: hidden;
         }
         #light2{
-            position: absolute;
+            position: fixed;
             z-index: 1;
             display: block;
             width: 100%;
@@ -40,6 +40,8 @@
     <img src="light1.png" alt="" id="light1">
     <img src="light2.png" alt="" id="light2">
     <script>
+        const debug = true
+
         let light1 = document.getElementById("light1");
         let light2 = document.getElementById("light2");
         let mouseX = 0;
@@ -55,6 +57,14 @@
             light1.style.opacity = 1;
             light2.style.opacity = 1;
         }, 60000)
+
+        if (debug) {
+            light();
+            light1.style.visibility = "visible";
+            light2.style.visibility = "visible";
+            light1.style.opacity = 1;
+            light2.style.opacity = 1;
+        }
 
         document.addEventListener("mousemove", (e) => {
             mouseX = e.clientX;
