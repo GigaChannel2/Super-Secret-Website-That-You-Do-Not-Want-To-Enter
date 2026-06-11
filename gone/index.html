@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gone.</title>
+    <link rel="icon" href="../icons/CHIPPED_KNIFE.png">
+    <link rel="stylesheet" href="../vid/vid.css">
+    <!-- <style>
+        body{
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center; /* horizontal center */
+            align-items: center;     /* vertical center */
+            height: 98vh;           /* full screen height */
+        }
+        /* 
+        video:-webkit-full-page-media {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            max-height: 100%;
+            max-width: 100%;
+            margin: auto;
+        }*/
+        video{
+            /* margin: auto; */
+            width: 100%;
+            height: auto;
+            display: block;
+            pointer-events: none;
+        }
+        .contain{
+            /* display: grid;
+            place-items: center; */
+            width: 90%;
+            max-width: 900px;
+        } -->
+    </style>
+</head>
+<body>
+    <div id="container">
+        <video autoplay name="media">
+            <source src="../vid/gone.mp4" type="video/mp4">
+        </video>
+    </div>
+    <h1 id="loop">Loop mode activated!</h1>
+    <!-- <script>
+        setTimeout(playVid, 2000);
+        function playVid() {
+            document.getElementById("vid").muted = false;
+        }
+    </script> -->
+    <script src="../vid/vid.js"></script>
+</body>
+</html>
