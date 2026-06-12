@@ -51,6 +51,7 @@
         }
         #content {
             padding-left: 45px;
+            padding-top: 45px;
             max-width: 700px;
             display: none;
             opacity: 0;
@@ -76,6 +77,7 @@
             max-width: 600px;
             padding-left: 20px;
             font-weight: normal;
+            white-space: pre-line;
         }
         #content #subtitle{
             font-size: 50px;
@@ -86,7 +88,7 @@
         #back {
             visibility: hidden;
             margin-left: 20px;
-            position: sticky;
+            position: fixed;
             top: 0;
             z-index: 3;
             border: 2px solid white;
@@ -99,11 +101,14 @@
             user-select: none;
             cursor: pointer;
         }
+        #backtxt {
+            padding: 5px;
+        }
     </style>
 </head>
 <body>
     <audio src="lost_library.m4a" autoplay loop></audio>
-    <h1 id="back" onclick="back()"><a class="butt"> Go Back </a></h1>
+    <h1 id="back" onclick="back()"><a id="backtxt" class="butt"> Go Back </a></h1>
     <div id="container">
         <h1 id="title">Lost Library</h1>
         <h1 id="desc"> Unknown Knowledge, Abandoned Books, What Would You Like To Do?</h1>
@@ -125,10 +130,10 @@
         <h1 id="title">Library Section ?</h1>
         <h1 id="subtitle">[LOST]</h1>
         <h1 class="desc">
-            [LOST] <br>
-            [LOST] <br>
-            [LOST] <br>
-            [LOST] <br>
+            [LOST]
+            [LOST]
+            [LOST]
+            [LOST]
         </h1>
         <div class="gap"></div>
     </div>
@@ -218,52 +223,52 @@
                 case 1:
                     title.textContent = "Library Section 1";
                     subtitle.textContent = "A Book";
-                    desc.innerHTML = "There was a book on the floor. It was open to a page with a drawing <br> Full of weird symbols and shapes, and creatures. <br><br>Lot's of scribbles, and disturbing images. <br>It was like a diary, but at the same time, a way to keep sanity. <br>";
+                    desc.textContent = "There was a book on the floor. It was open to a page with a drawing \n Full of weird symbols and shapes, and creatures. \n\nLot's of scribbles, and disturbing images. \nIt was like a diary, but at the same time, a way to keep sanity. \n";
                     break;
                 case 2:
                     title.textContent = "Library Section 2";
                     subtitle.textContent = "A Laptop";
-                    desc.innerHTML = "Same place, different stuff. <br>A Laptop, with only a notepad inside. <br>...And a hangman game. <br>";
+                    desc.textContent = "Same place, different stuff. \nA Laptop, with only a notepad inside. \n...And a hangman game. \n";
                     break;
                 case 3:
                     title.textContent = "Library Section 3";
                     subtitle.textContent = "A White Space";
-                    desc.innerHTML = "You've been living here for as long as you can remember. <br><br>Your own personal space, with nothing but a white background and a single light source. <br><br>Your own world.";
+                    desc.textContent = "You've been living here for as long as you can remember. \n\nYour own personal space, with nothing but a white background and a single light source. \n\nYour own world.";
                     break;
                 case 4:
                     title.textContent = "Library Section 4";
                     subtitle.textContent = "An Imagination";
-                    desc.innerHTML = "Headspace? <br><br>A place where you can be free from the real world, and just let your imagination run wild. <br>A place where you can be anything you want, and do anything you want. <br>A place where you can be yourself, and not care about what others think. <br>A place where you can be happy, and not care about the past or the future.<br><br>But where will you go when you want to leave? <br>Where will you go when you want to face reality again? <br>Where will you go when you want to be with others again? <br>Where will you go when you want to be alone again?";
+                    desc.textContent = "Headspace? \n\nA place where you can be free from the real world, and just let your imagination run wild. \nA place where you can be anything you want, and do anything you want. \nA place where you can be yourself, and not care about what others think. \nA place where you can be happy, and not care about the past or the future.\n\nBut where will you go when you want to leave? \nWhere will you go when you want to face reality again? \nWhere will you go when you want to be with others again? \nWhere will you go when you want to be alone again?";
                     break;
                 case 5:
                     title.textContent = "Library Section 5";
                     subtitle.textContent = "A Truth";
-                    desc.innerHTML = "Why you keeping it by yourself? <br>Why you keeping it a secret? <br>Why you keeping it hidden? <br><br>They never knew, and they never will. <br>But you know. <br>You know the truth. <br>You'll always know the truth. <br>It's always has been inside you. <br>You cannot escape it. <br>";
+                    desc.textContent = "Why you keeping it by yourself? \nWhy you keeping it a secret? \nWhy you keeping it hidden? \n\nThey never knew, and they never will. \nBut you know. \nYou know the truth. \nYou'll always know the truth. \nIt's always has been inside you. \nYou cannot escape it. \n";
                     break;
                 case 6:
                     title.textContent = "Library Section 6";
                     subtitle.textContent = "A Library";
-                    desc.innerHTML = "There are books here, filled with stories and knowledge. <br>Filled with stories of adventure, romance, and mystery. <br>Filled with knowledge of science, history, and philosophy. <br>Filled with emotion, imagination, and creativity. <br><br>A place to escape, to learn, to grow. <br>A place to find yourself, to find others, to find the world. <br><br>A place, to gain wisdom, knowledge, and understanding. <br>A place, to find answers, to find questions, to find meaning. <br><br>A place, that has been lost, but can be found again. <br>A place, that has been forgotten, but can be remembered again. <br>A place, that has been destroyed, but can be rebuilt again. <br><br>Forgotten, but not gone. <br>Abandoned, but not lost. <br>Gone? Not really. <br><br>It's still here, waiting for you to find it. <br>It's still here, waiting for you to explore it. <br>It's still here, waiting for you to discover it. <br><br>It's still here, waiting for something to happen. <br><br>It's still here, right inside your mind. <br>";
+                    desc.textContent = "There are books here, filled with stories and knowledge. \nFilled with stories of adventure, romance, and mystery. \nFilled with knowledge of science, history, and philosophy. \nFilled with emotion, imagination, and creativity. \n\nA place to escape, to learn, to grow. \nA place to find yourself, to find others, to find the world. \n\nA place, to gain wisdom, knowledge, and understanding. \nA place, to find answers, to find questions, to find meaning. \n\nA place, that has been lost, but can be found again. \nA place, that has been forgotten, but can be remembered again. \nA place, that has been destroyed, but can be rebuilt again. \n\nForgotten, but not gone. \nAbandoned, but not lost. \nGone? Not really. \n\nIt's still here, waiting for you to find it. \nIt's still here, waiting for you to explore it. \nIt's still here, waiting for you to discover it. \n\nIt's still here, waiting for something to happen. \n\nIt's still here, right inside your mind. \n";
                     break;
                 case 7:
                     title.textContent = "Library Section 7";
                     subtitle.textContent = "The Sin";
-                    desc.innerHTML = "We made mistakes, and that's okay, right? <br>All the sins he made, every single one. <br>Every bad things he did. <br>Has turned into one. <br>What we call him, 'Tsumi'. <br><br>He is all his mistakes. <br>He is all his sins. <br>He is all his bad things. <br>He is all his wrongs. <br><br>He takes control. <br>He takes over. <br>He takes everything. <br><br>He did it one time, that's all it took. <br>He's here, because of him. <br>He's here, for him. <br><br>* Persist <br>* Surrender ❤️";
+                    desc.textContent = "We made mistakes, and that's okay, right? \nAll the sins he made, every single one. \nEvery bad things he did. \nHas turned into one. \nWhat we call him, 'Tsumi'. \n\nHe is all his mistakes. \nHe is all his sins. \nHe is all his bad things. \nHe is all his wrongs. \n\nHe takes control. \nHe takes over. \nHe takes everything. \n\nHe did it one time, that's all it took. \nHe's here, because of him. \nHe's here, for him. \n\n* Persist \n* Surrender ❤️";
                     break;
                 case 8:
                     title.textContent = "Library Section 8";
                     subtitle.textContent = "Hatred";
-                    desc.innerHTML = "Your hates on everyone, including you. <br>Where do you think they're going? <br><br>They were kept inside you, struggling to get out. <br>You have hold them for too long. <br>Too much to keep inside. <br>You have made, Tsumi.";
+                    desc.textContent = "Your hates on everyone, including you. \nWhere do you think they're going? \n\nThey were kept inside you, struggling to get out. \nYou have hold them for too long. \nToo much to keep inside. \nYou have made, Tsumi.";
                     break;
                 case 9:
                     title.textContent = "Library Section 9";
                     subtitle.textContent = "[LOST]";
-                    desc.innerHTML = "[LOST] <br>[LOST] <br>[LOST] <br>[LOST] <br>[LOST] <br>";
+                    desc.textContent = "[LOST] \n[LOST] \n[LOST] \n[LOST] \n[LOST] \n";
                     break;
                 case 143:
                     title.textContent = "Library Section 143";
                     subtitle.textContent = "Love from a Friend";
-                    desc.innerHTML = "not yet, work in progress (looking for an idea), why are you here anyway";
+                    desc.textContent = "not yet, work in progress (looking for an idea),\nwhy are you here anyway";
                     break;
                 default:
                     break;
