@@ -5,7 +5,7 @@ let lib = params.get("q");
 let password = document.getElementById("tbox");
 let txt = document.getElementById("txt");
 let but = document.getElementById("but")
-let pass = null;
+let pass = "";
 let sound = document.getElementById("aud");
 let on = document.getElementById("on");
 let body = document.getElementById("body");
@@ -331,7 +331,6 @@ function submit() {
             goTo("trinity.html");
             break;
         case "dark place":
-            
             // code 87
             goTo("dark-place");
             break;
