@@ -5,7 +5,7 @@ let lib = params.get("q");
 let password = document.getElementById("tbox");
 let txt = document.getElementById("txt");
 let but = document.getElementById("but")
-let pass = "";
+let pass = null;
 let sound = document.getElementById("aud");
 let on = document.getElementById("on");
 let body = document.getElementById("body");
@@ -246,7 +246,7 @@ function submit() {
             break;
         case "tiba-tiba":
             // code 112
-            goTo("tiktokvideoifoundthatscool.html");
+            goTo("tiktokvideoifoundthatscool");
             break;
         case "lost library":
             // code 111
@@ -331,6 +331,7 @@ function submit() {
             goTo("trinity.html");
             break;
         case "dark place":
+            
             // code 87
             goTo("dark-place");
             break;
