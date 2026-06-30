@@ -699,6 +699,7 @@ function jutz() {
     const vrkgyk_jutz = document.getElementById("Vrkgyk_jutz");
     const iframe = vrkgyk_jutz.querySelector("iframe");
 
+    vrkgyk_jutz.style.display = "flex";
     iframe.src = "https://rule34.xxx";
 }
 

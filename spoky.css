@@ -12,6 +12,7 @@ body {
   opacity: 0;
   font-family: 'Source Code Pro';
   color: white;
+  margin: 0;
 }
 
 button {
@@ -235,11 +236,16 @@ dialog {
 }
 
 #Vrkgyk_jutz {
-  width: 60vw;
+  width: 100vw;
   height: 60vh;
+  left: 50vw;
+  /* transform: translateX(-50%); */
+  display: none;
+  justify-content: center;
+  resize: horizontal;
 }
 
 #Vrkgyk_jutz iframe {
-  width: 100%;
+  width: 90%;
   height: 100%;
 }
