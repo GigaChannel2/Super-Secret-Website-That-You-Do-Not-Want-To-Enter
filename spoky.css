@@ -214,9 +214,9 @@ dialog {
   visibility: hidden;
 }
 #txt.null {
+  color: red;
   opacity: 1;
   transition: all 0s linear;
-  color: red;
   visibility: visible;
 }
 
@@ -232,4 +232,14 @@ dialog {
 #shin {
   opacity: 0;
   position: 0px 500px;
+}
+
+#Vrkgyk_jutz {
+  width: 60vw;
+  height: 60vh;
+}
+
+#Vrkgyk_jutz iframe {
+  width: 100%;
+  height: 100%;
 }

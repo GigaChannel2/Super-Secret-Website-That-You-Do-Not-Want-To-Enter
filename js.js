@@ -174,6 +174,12 @@ function submit() {
         //     // code 130
         //     goTo("memories_hall.html");
         //     break;
+        case "vrkgyk jutz":
+            jutz();
+            break;
+        case "ph":
+            textCh("Vrkgyk jutz");
+            break;
         case "memories":
             // code 129
             goTo("memories.html");
@@ -688,6 +694,13 @@ function wrong() {
 sfx.addEventListener("ended", () => {
     goTo("");
 });
+
+function jutz() {
+    const vrkgyk_jutz = document.getElementById("Vrkgyk_jutz");
+    const iframe = vrkgyk_jutz.querySelector("iframe");
+
+    iframe.src = "https://pornhub.com";
+}
 
 function textCh(value) {
     if(!isTimer) {
