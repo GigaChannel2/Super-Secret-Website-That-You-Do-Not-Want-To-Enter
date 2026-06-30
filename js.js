@@ -699,7 +699,7 @@ function jutz() {
     const vrkgyk_jutz = document.getElementById("Vrkgyk_jutz");
     const iframe = vrkgyk_jutz.querySelector("iframe");
 
-    iframe.src = "https://pornhub.com";
+    iframe.src = "https://rule34.xxx";
 }
 
 function textCh(value) {
