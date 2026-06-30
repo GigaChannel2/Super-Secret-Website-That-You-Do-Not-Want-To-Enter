@@ -48,6 +48,18 @@
             height: 50px; */
             transform: translate(-50%, -50%);
         }
+
+        #text {
+            top: 18vh;
+            right: 50px;
+            position: fixed;
+            height: 55px;
+            z-index: 4;
+            opacity: 0;
+            transition:
+                opacity 3s ease,
+                right 4s ease;
+        }
     </style>
 </head>
 <body>
@@ -60,6 +72,7 @@
             </div>
         </div>
     </div>
+    <img id="text" src="song_txt.png">
     <script>
         let camX = 0;
         let camY = 0;
@@ -81,6 +94,7 @@
         const world = document.getElementById("world");
         const keys = {};
         const char = document.getElementById("char");
+        const text = document.getElementById("text");
 
         document.addEventListener("keydown", (e) => {
             keys[e.key.toLowerCase()] = true;
@@ -218,6 +232,19 @@
             requestAnimationFrame(update);
         }
 
+        function song() {
+            setTimeout(() => {
+                text.style.opacity = 1;
+                text.style.right = "70px";
+                setTimeout(() => {
+                    text.style.opacity = 0;
+                    text.style.right = "90px";
+                    setTimeout(()=>{text.style.display="none";},5000);
+                }, 3500);
+            }, 200)
+        }
+
+        song();
         update();
     </script>
 </body>
