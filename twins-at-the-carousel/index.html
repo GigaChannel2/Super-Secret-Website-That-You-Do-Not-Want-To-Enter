@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twins at the Carousel</title>
+    <style>
+        @font-face {
+            font-family: "font";
+            src: url(../fonts/8bitOperatorPlus-Bold.ttf);
+        }
+        body {
+            background: black;
+            color: white;
+            font-family: "font";
+            margin: 0;
+        }
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            text-align: center;
+            flex-direction: column;
+        }
+        #lyrics {
+            max-width: 400px;
+            opacity: 0;
+            transition: opacity 1.8s ease-in;
+        }
+        #help {
+            color: black;
+            position: absolute;
+            bottom: 5vh;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            width: 100vw;
+        }
+    </style>
+</head>
+<body>
+    <audio src="kikuo.mp3" autoplay></audio>
+    <div id="container">
+        <h1 id="lyrics">TEST</h1>
+    </div>
+    <h1 id="help">i suffered by making this</h1>
+
+    <script>
+        let lyrics = document.getElementById("lyrics");
+        let random_l = true;
+        let random_t = "";
+        let aud = document.querySelector("audio");
+        let repeater = 0;
+        let t = aud.currentTime;
+
+        setInterval(() => {
+            t = aud.currentTime;
+        }, 100);
+
+        setTimeout(() => {
+            lyrics.style.opacity = 0.4;
+        }, 200)
+        // aud.addEventListener("timeupdate", () => {
+        setInterval(() => {
+
+            if (random_l) {
+                let int = randomInt(1, 4);
+                switch (int) {
+                    case 1:
+                        lyrics.textContent = "STOP"
+                        break;
+                    case 2:
+                        lyrics.textContent = "WHY"
+                        break;
+                    case 3:
+                        lyrics.textContent = "NO"
+                        break;
+                    case 4:
+                        lyrics.textContent = "DONT"
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (t >= 1.8 && t <= 2) {
+                lyrics.style.transition = "opacity 0s linear";
+                lyrics.style.opacity = 1;
+                random_l = false;
+                lyrics.textContent = "LA";
+            } else if (t >= 2.5 && t <= 3) {
+                lyrics.textContent = "LA LA";
+            } else if (t >= 3.5 && t <= 4) {
+                lyrics.textContent = "LA LA LA";
+            } else if (t >= 4.2 && t <= 4.44) {
+                lyrics.textContent = "LA LA LA LA";
+            } else if (t >= 4.44 && t <= 4.8) {
+                lyrics.textContent = "LA LA LA LA LA";
+            } else if (t >= 5.2 && t <= 5.4) {
+                lyrics.textContent = "";
+            } else if (t >= 5.2 && t <= 7.48) {
+                if (repeater <= 15) {
+                    setTimeout(() => {
+                        repeater++;
+                        lyrics.textContent += "NA ";
+                    }, 230);
+                }
+            } else if (t >= 9.1 && t <= 10) {
+                lyrics.textContent = "LA";
+            } else if (t >= 10 && t <= 10.8) {
+                lyrics.textContent = "LA LA";
+            } else if (t >= 10.8 && t <= 11.7) {
+                lyrics.textContent = "LA LA LA";
+            } else if (t >= 11.67 && t <= 12) {
+                lyrics.textContent = "LA LA LA LA";
+            } else if (t >= 12 && t <= 12.7) {
+                lyrics.textContent = "LA LA LA LA LA";
+            } else if (t >= 12.7 && t <= 13) {
+                lyrics.textContent = "LA";
+            } else if (t >= 13.1 && t <= 13.4) {
+                lyrics.textContent = "LA LA";
+            } else if (t >= 13.4 && t <= 13.7) {
+                lyrics.textContent = "LA LA LA";
+            } else if (t >= 13.7 && t <= 14) {
+                lyrics.textContent = "LA LA LA LA";
+            } else if (t >= 14.4 && t <= 14.7) {
+                lyrics.textContent = "LA LA LA LA LA";
+            } else if (t >= 14.7 && t <= 15) {
+                lyrics.textContent = "LA LA LA LA LA LA";
+            } else if (t >= 16.5 && t <= 17) {
+                lyrics.textContent = "LA";
+            } else if (t >= 17 && t <= 17.2) {
+                lyrics.textContent = "LA LA";
+            } else if (t >= 17.2 && t <= 17.4) {
+                lyrics.textContent = "LA LA LA";
+            } else if (t >= 17.4 && t <= 17.6) {
+                lyrics.textContent = "LA LA LA LA";
+            } else if (t >= 17.6 && t <= 17.8) {
+                lyrics.textContent = "LA LA LA LA LA";
+            } else if (t >= 18.5 && t <= 18.8) {
+                lyrics.textContent = "LA";
+            } else if (t >= 19 && t <= 19.1) {
+                lyrics.textContent = "LA LA";
+            } else if (t >= 19.2 && t <= 19.3) {
+                lyrics.textContent = "LA LA LA";
+            } else if (t >= 19.3 && t <= 19.4) {
+                lyrics.textContent = "LA LA LA LA";
+            } else if (t >= 19.4 && t <= 20) {
+                lyrics.textContent = "LA LA LA LA LA";
+            } else if (t >= 20.6 && t <= 30) {
+                lyrics.style.opacity = 0;
+                setTimeout(() => {
+                    lyrics.style.transition = "opacity 6s ease-in";
+                    lyrics.style.opacity = 0.5;
+                    random_l = true;
+                }, 200);
+            } else if (t >= 30 && t <= 31.6) {
+                random_l = false;
+                lyrics.style.transition = "opacity 0s linear";
+                lyrics.style.opacity = 0;
+            } else if (t >= 31 && t <= 35) {
+                lyrics.style.opacity = 1;
+                lyrics.textContent = "OOOOO";
+            } else if (t >= 35) {
+                lyrics.style.transition = "opacity 4s ease";
+                lyrics.style.opacity = 0;
+            }
+            // } else if (t >= 5.4 && t <= 5.6) {
+            //     lyrics.textContent = "NA";
+            // } else if (t >= 5.6 && t <= 5.8) {
+            //     lyrics.textContent = "NA NA";
+            // } else if (t >= 5.8 && t <= 6) {
+            //     lyrics.textContent = "NA NA NA";
+            // } else if (t >= 6 && t <= 6.2) {
+            //     lyrics.textContent = "NA NA NA NA";
+            // } else if (t >= 6.2 && t <= 6.4) {
+            //     lyrics.textContent = "NA NA NA NA NA";
+            // } else if (t >= 6.4 && t <= 6.6) {
+            //     lyrics.textContent = "NA NA NA NA NA NA NA";
+            // } else if (t >= 6.6 && t <= 6.8) {
+            //     lyrics.textContent = "NA NA NA NA NA NA NA NA";
+            // } else if (t >= 6.8 && t <= 7) {
+            //     lyrics.textContent = "NA NA NA NA NA NA NA NA NA";
+            // }
+
+        }, 100);
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        // });
+    </script>
+</body>
+</html>
