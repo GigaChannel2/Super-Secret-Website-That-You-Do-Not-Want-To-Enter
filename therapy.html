@@ -309,7 +309,10 @@
             dia.classList.add("show");
             isDialogue = true;
             currentLine = 0;
-            typeText(activeDialogue[currentLine]);
+            typeText("");
+            setTimeout(() => {
+                typeText(activeDialogue[currentLine]);
+            }, 500);
         }
 
         function finishDia() {
