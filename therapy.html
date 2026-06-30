@@ -7,7 +7,7 @@
     <style>
         @font-face {
             font-family: "8bit";
-            src: url("big-shot.ttf");
+            src: url("fonts/8bitOperatorPlus-Bold.ttf");
         }
         body{
             margin: 0;
@@ -26,8 +26,9 @@
         }
         #dialogue{
             position: fixed;
-            width: 300px;
-            max-width: 500px;
+            width: 500px;
+            height: 100px;
+            max-width: 900px;
 
             min-height: 50px;
             max-height: 300px;
@@ -44,16 +45,25 @@
             transition: all 0.5s linear;
             overflow: hidden;
         }
+        #dialogue ul {
+            /* list-style-type: "+"; */
+            padding-left: 10px;
+            margin: 0;
+        }
+        #dialogue ul li::marker {
+            content: "* ";
+
+        }
         #dialogue.show{
             transition: all 0.5s linear;
             bottom: 10vh;
         }
         #dia_text{
             font-family: "8bit";
-            white-space: normal;
+            /* white-space: normal; */
             font-size: 20px;
-            white-space: pre-warp;
-            display: block;
+            white-space: pre-line;
+            /* display: block; */
         }
         #viewport{
             width: 100vw;
@@ -99,7 +109,11 @@
     <audio src="man2.m4a" autoplay loop></audio>
     
     <div id="viewport">
-        <div id="dialogue"><a id="dia_text">This is a dialogue.</a></div>
+        <div id="dialogue">
+            <ul>
+                <li id="dia_text">This is a dialogue.</li>
+            </ul>
+        </div>
         <div id="world">
             <div id="map">
                 <div id="char"><img src="img/kris/kris_dw_left.png" alt="" id="char_sprite"></div>
@@ -109,7 +123,7 @@
         </div>
     </div>
     <script>
-        let debug = true;
+        let debug = false;
 
         let camX = 0;
         let camY = 0;
@@ -164,23 +178,23 @@
             height: 50
         };
         const dialogueLines = [
-            "*There's a picture of a person.\nWith a text full of his sins",
-            "*All of them written with blood.",
-            "*..."
+            "There's a picture of a person.\nWith a text full of his sins",
+            "All of them written with blood.",
+            "..."
         ];
         const dialogueLines2 = [
-            "*It's all drawn on the wall",
-            "*Looks like those character that will show up in your fever dream.",
-            "*...Are you dreaming right now?"
+            "It's all drawn on the wall",
+            "Looks like those character that will show up in your fever dream.",
+            "...Are you dreaming right now?"
         ];
         const dialogueLines3 = [
-            "*There are three person drawn on the wall.",
-            "*Each character has a name, Merry, Hiroi, And #####",
-            "*...Turns out it's just one person, with different personality, or self.",
-            "*Merry was supposed to keep his manliness away, and treat themself as the feminime side.",
-            "*Hiroi was just an average social battery for the person, to keep his biggest fear.",
-            "*And his true self, #####, was a shy but kind person, sometimes kinda dumb.",
-            "*...wait, is that me?"
+            "There are three person drawn on the wall.",
+            "Each character has a name, Merry, Hiroi, And #####",
+            "...Turns out it's just one person, with different personality, or self.",
+            "Merry was supposed to keep his manliness away, and treat themself as the feminime side.",
+            "Hiroi was just an average social battery for the person, to keep his biggest fear.",
+            "And his true self, #####, was a shy but kind person, sometimes kinda dumb.",
+            "...wait, is that me?"
         ];
 
         let activeDialogue = [];
@@ -214,6 +228,13 @@
                     } else {
                         isDialogue = false;
                         dia.classList.remove("show");
+                    }
+                }
+            }
+            if (e.key.toLowerCase() === "x" || e.key === "Shift") {
+                if (isTyping) {
+                    if (currentLine < activeDialogue.length) {
+                        typeText(activeDialogue[currentLine], true);
                     }
                 }
             }
@@ -263,7 +284,11 @@
                     currentText += text[i];
                     dia_text.textContent = currentText;
                     i++;
-                    setTimeout(type, 30); // speed
+                    if (skip) {
+                        type();
+                    } else {
+                        setTimeout(type, 45); // speed
+                    }
                 } else {
                     isTyping = false;
                 }
