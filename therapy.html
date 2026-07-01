@@ -7,7 +7,7 @@
     <style>
         @font-face {
             font-family: "8bit";
-            src: url("fonts/8bitOperatorPlus-Bold.ttf");
+            src: url("fonts/deltarune-8-bit-font-cyrillic.otf");
         }
         body{
             margin: 0;
@@ -33,7 +33,8 @@
             min-height: 50px;
             max-height: 300px;
             left: 50%;
-            bottom: -1000px;
+            /* bottom: -1000px; */
+            top: -1000px;
 
             padding: 25px;
             transform: translateX(-50%);
@@ -44,19 +45,21 @@
             color: white;
             transition: all 0.5s linear;
             overflow: hidden;
+            text-transform: uppercase;
         }
         #dialogue ul {
-            /* list-style-type: "+"; */
+            list-style-type: none;
             padding-left: 10px;
             margin: 0;
         }
         #dialogue ul li::marker {
-            content: "* ";
+            content: " ";
 
         }
         #dialogue.show{
             transition: all 0.5s linear;
-            bottom: 10vh;
+            top: 7vh;
+            /* bottom: 10vh; */
         }
         #dia_text{
             font-family: "8bit";
@@ -155,7 +158,9 @@
         let fullText = "";
         let isDialogue = false;
         let insideZone = false;
-        
+
+        let text_sfx = new Audio();
+
         const world = document.getElementById("world");
         const keys = {};
         const char = document.getElementById("char");
@@ -261,6 +266,12 @@
             );
         }
 
+        setInterval(() => {
+            if (isTyping) {
+                text_sfx.play();
+            }
+        }, 20);
+
         function typeText(text, skip) {
             typingID++;
             dia_text.textContent = "";
@@ -281,6 +292,7 @@
                         isTyping = false;
                         return;
                     }
+                    text_sfx.src = "sfx/snd_board_text_main.wav";
                     currentText += text[i];
                     dia_text.textContent = currentText;
                     i++;
@@ -291,6 +303,9 @@
                     }
                 } else {
                     isTyping = false;
+                    new Audio("sfx/snd_board_text_main_end.wav").play();
+                    // text_sfx.src = "sfx/snd_board_text_main_end.wav";
+                    // text_sfx.play();
                 }
             }
 
