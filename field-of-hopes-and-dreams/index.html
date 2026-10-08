@@ -121,8 +121,7 @@
                 charY -= speed;
                 direction = "up";
                 moving = true;
-            }
-            if (keys["arrowdown"]) {
+            } else if (keys["arrowdown"]) {
                 charY += speed;
                 direction = "down";
                 moving = true;
@@ -131,8 +130,7 @@
                 charX -= speed;
                 direction = "left";
                 moving = true;
-            }
-            if (keys["arrowright"]) {
+            } else if (keys["arrowright"]) {
                 charX += speed;
                 direction = "right";
                 moving = true;
