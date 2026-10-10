@@ -105,6 +105,13 @@
             moving = false;
         });
 
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("./sw.js")
+                .catch(console.error);
+            });
+        }
+
         function setSprite(sprt) {
             if (currentSprite !== sprt) {
                 sprite.src = sprt;
