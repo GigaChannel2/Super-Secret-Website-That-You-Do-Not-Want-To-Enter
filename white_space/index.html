@@ -15,27 +15,34 @@
         body{
             font-family: omori;
             text-align: center;
-            margin-top: 2%;
+            margin: 0;
+            /* margin-top: 2%; */
             background-color: white;
             display: flex;
-            text-align: center;
-            align-items: center;
-            height: 90vh;
-            justify-content: center;
+            /* height: 90vh; */
         }
         #vid{
-            width: 100%;
+            width: 50%;
             height: auto;
             display: block;
             pointer-events: none;
             image-rendering: pixelated;
         }
+        /* #space h1 {
+            font-size: ;
+        } */
         #space{
             opacity: 0;
             transition: opacity 8s ease-in-out;
-            display: block;
-            width: 100%;
-            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+            /* max-width: 900px; */
+            max-height: 100vh;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
