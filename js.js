@@ -398,7 +398,8 @@ function submit() {
             break;
         case "white space":
             // code 70
-            goTo("white_space");
+            // goTo("white_space");
+            whitespace();
             break;
         case "black space":
             // code 69
@@ -644,6 +645,16 @@ function submit() {
             goTo("https://youtu.be/4e2XnoNEsdE?si=9h4i9rQDsN2VY22z&t=96");
             break;
     }
+}
+
+function whitespace() {
+    body.style.opacity = 0;
+    setTimeout(() => {
+        body.style.backgroundColor = "#FFFFFF"
+        setTimeout(() => {
+            goTo("white_space");
+        }, 3000);
+    }, 2000);
 }
 
 function playSfx(src) {

@@ -13,6 +13,9 @@ body {
   font-family: 'Source Code Pro';
   color: white;
   margin: 0;
+  transition:
+  opacity 2s ease,
+  background-color 2s ease;
 }
 
 button {
