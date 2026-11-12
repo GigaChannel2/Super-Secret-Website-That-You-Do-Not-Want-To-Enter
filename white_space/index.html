@@ -20,20 +20,30 @@
             background-color: white;
             display: flex;
             /* height: 90vh; */
+            transition: background-color 2s ease;
         }
         #vid{
-            width: 50%;
-            height: auto;
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
             display: block;
             pointer-events: none;
             image-rendering: pixelated;
+            transition: 
+            opacity 16s ease-in-out,
+            top 16s linear;
+            position: relative;
+            top: 700px;
         }
-        /* #space h1 {
-            font-size: ;
-        } */
+        #space h1 {
+            /* font-size: ; */
+            /* min-height: 100px; */
+            min-width: 30%;
+            min-height: min-content;
+        }
         #space{
+            position: fixed;
             opacity: 0;
-            transition: opacity 8s ease-in-out;
             display: flex;
             flex-direction: column;
             width: 100vw;
@@ -43,6 +53,22 @@
             text-align: center;
             align-items: center;
             justify-content: center;
+            transition: 
+            opacity 16s ease-in-out,
+            top 16s linear;
+        }
+        #redhand {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            image-rendering: pixelated;
+            align-self: flex-start;
+            margin-left: 20px;
+            user-select: none;
+            /* pointer-events: none; */
+        }
+        #redhand:hover {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -54,9 +80,14 @@
         <video muted autoplay loop id="vid">
             <source src="../vid/whitespace.mp4" type="video/mp4">
         </video>
+        <img id="redhand" src="redhand.gif" alt="">
     </div>
     <script>
         const audio = document.getElementById("aud");
+        let vid = document.getElementById("vid");
+        let redhand = document.getElementById("redhand");
+        let body = document.querySelector("body");
+        let space = document.getElementById("space");
         let started = false;
         audio.play();
         audio.play().then(() => {
@@ -66,6 +97,22 @@
             // document.removeEventListener("keydown", startAudio);
             // document.removeEventListener("scroll", startAudio);
         });
+
+        redhand.addEventListener("click", () => {
+            back();
+        });
+        
+        function back() {
+            space.style.transition = "opacity 3s ease";
+            space.style.opacity = 0;
+            fadeIn(audio, 0, 5)
+            setTimeout(() => {
+                body.style.backgroundColor = "#000000";
+                setTimeout(() => {
+                    window.location.href = "https://gigachannel2.github.io/Super-Secret-Website-That-You-Do-Not-Want-To-Enter/";
+                }, 2000);
+            }, 3000);
+        }
 
         
         // document.addEventListener("click", startAudio);
@@ -90,7 +137,8 @@
         // }
 
         function boom() {
-            document.getElementById("space").style.opacity = 1;
+            space.style.opacity = 1;
+            vid.style.top = 0;
             fadeIn(audio, 1, 8000);
         }
 
