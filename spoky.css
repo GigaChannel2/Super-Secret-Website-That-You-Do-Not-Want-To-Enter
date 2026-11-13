@@ -14,7 +14,7 @@ body {
   color: white;
   margin: 0;
   transition:
-  opacity 2s ease,
+  opacity 1s ease,
   background-color 2s ease;
 }
 

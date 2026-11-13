@@ -648,13 +648,13 @@ function submit() {
 }
 
 function whitespace() {
+    body.style.backgroundColor = "#FFFFFF";
     body.style.opacity = 0;
+    // setTimeout(() => {
     setTimeout(() => {
-        body.style.backgroundColor = "#FFFFFF"
-        setTimeout(() => {
-            goTo("white_space");
-        }, 3000);
-    }, 2000);
+        goTo("white_space");
+    }, 3000);
+    // }, 2000);
 }
 
 function playSfx(src) {
