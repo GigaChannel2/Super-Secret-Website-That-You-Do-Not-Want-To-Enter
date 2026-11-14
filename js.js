@@ -174,6 +174,9 @@ function submit() {
         //     // code 130
         //     goTo("memories_hall.html");
         //     break;
+        case "title":
+            goTo("title")
+            break;
         case "vrkgyk jutz":
             jutz();
             break;
